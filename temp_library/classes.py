@@ -1,13 +1,30 @@
 import temp_library
+import random
 
+class Decision(object):
+    def __init__(self, next__scene, successRate=1.0):
+        self.next_scene = next__scene
+        self.successRate = successRate
 
-# class Decision:
+    def GetScene(self):
+        return self.next_scene
+
+    def GetSceneName(self):
+        return self.next_scene.getName()
+
+    def GetSuccessRate(self):
+        return self.successRate
+
 
 class Scene(object):
-    def __init__(self, desc, choice, decision):
+    def __init__(self, name, desc, choice):
+        self.name = name
         self.desc = desc
         self.choice = choice
-        self.decision = decision
+        
+
+    def GetName(self):
+        return self.name
 
     def ShowDesc(self):
         return self.desc
@@ -20,6 +37,7 @@ class Scene(object):
 
         return choice_list
 
+
 class Option(object):
     def __init__(self, text, key, decision):
         self.text = text
@@ -30,7 +48,7 @@ class Option(object):
         return self.text
 
     def GetDecision(self):
-        return self.decision
+        return self.decision.getDecisionName()
 
     def ShowKeys(self):
         key_list = "available keys: "
@@ -42,7 +60,13 @@ class Option(object):
         return key_list
 
 
-# class ChanceOption(Option):
+class ChanceOption(Option):
+    def DecisionDraw(self):
+        wheights = []
+        for i in range(len(self.decision)):
+            wheights[i] = self.decision[i].getSuccessRate()
+        draw = random.choices(self.decision,wheights,k=1)
+        return draw
 
 
 class IntroScene(Scene):
@@ -61,5 +85,9 @@ class NextScene1(Scene):
                 Decision(LuckyScene, successRate=0.5),
                 Decision(DeadScene, successRate=0.5)
             ]),
-        ChanceOption('Flee', key=['flee'], )
+        ChanceOption('Flee', key=['flee'], 
+            decision=[
+                Decision(FleeScene, successRate= 0.5), 
+                Decision(DeadScene, successRate=0.5)
+            ])
     ]

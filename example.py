@@ -59,7 +59,7 @@ def main():
             os.system("cls")
             helpers.statsdsply(SKILL, LUCK, STAMINA)
             print("You charge the door with your shoulder.\n" + Bstart + "Roll two dice." + Bstop + "\nIf the number rolled is less than or equal to 7, you succeed.\nIf the number rolled is greater than your skill, you fail at opening the door.")
-            ok = helpers.roll(LUCK.getValue(), 'less')
+            ok = helpers.roll(LUCK, 'less')
             LUCK.setValue(LUCK.getValue()-1)
             if ok:
                 print()
@@ -92,7 +92,7 @@ def main():
     helpers.statsdsply(SKILL, LUCK, STAMINA)
     print("There is a right-hand turn to the north in the passage.\nCautiously you approach a sentry post on the corner and, as you look in, you can see a strange Goblin-like creature in leather armour asleep at his post.\nYou try to tiptoe past him.\nTest your Luck. If you are Lucky, he does not wake up and remains snoring loudly. If you are Unlucky, you step with a crunch on some loose ground and his eyes flick open.")
     input("press enter to continue...")
-    ok = helpers.roll(LUCK.getValue(), 'less')
+    ok = helpers.roll(LUCK, 'less')
     LUCK.setValue(LUCK.getValue()-1)
 
     # unlucky
@@ -150,7 +150,7 @@ def main():
                 os.system("cls")
 
         if choice == "steal":
-            ok = helpers.roll(LUCK.getValue(), 'less')
+            ok = helpers.roll(LUCK, 'less')
 
             if not ok:
                 # scene no. 33

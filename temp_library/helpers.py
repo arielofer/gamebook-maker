@@ -47,36 +47,39 @@ def statsdsply(trait1, trait2, trait3):
     print()
 
 
-def roll(num, arg):
+def roll(trait, arg):
     # dice rolling function
     input("press enter to roll the dice...")
-    dice = 0
-    for i in range(1):
-        dice += random.randint(1, 6)
+    dice_roll = 0
+    dice_num = trait.getDiceNum()
+    Trait_value = trait.getValue()
+
+    for i in range(dice_num):
+        dice_roll += random.randint(1, 6)
 
     if arg == 'less':
-        if dice <= num:
+        if dice_roll <= Trait_value:
             print("")
-            print("you rolled a " + str(dice))
+            print("you rolled a " + str(dice_roll))
             print("")
             input('success - press enter to continue...')
             return True
         else:
             print("")
-            print("you rolled a " + str(dice))
+            print("you rolled a " + str(dice_roll))
             print("")
             input('you were unlucky this time. press enter to continue...')
             return False
     else:
-        if dice >= num:
+        if dice_roll >= Trait_value:
             print("")
-            print("you rolled a " + str(dice))
+            print("you rolled a " + str(dice_roll))
             print("")
             input('success - press enter to continue...')
             return True
         else:
             print("")
-            print("you rolled a " + str(dice))
+            print("you rolled a " + str(dice_roll))
             print("")
             input('you were unlucky this time. press enter to continue...')
             return False

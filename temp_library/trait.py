@@ -3,7 +3,7 @@ import random
 
 
 class Trait(object):
-    def __init__(self, name, const, dice_num):
+    def __init__(self, name, const, dice_num=0):
         """rolled based trait
             name: trait's name
             const: constant numeric value that adds to the randomized value to create the finale value of the trait
@@ -23,9 +23,6 @@ class Trait(object):
 
     def getName(self):
         return self.name
-
-    def getDice(self):
-        return self.dice_sum
 
     def getValue(self):
         return self.value
