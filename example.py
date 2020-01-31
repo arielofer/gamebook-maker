@@ -7,6 +7,7 @@ from temp_library import helpers
 def main():
     # opening screen
     helpers.openscrn()
+    input("press enter to start your quest...")
     os.system("cls")
     # stats
     SKILL, LUCK, STAMINA = helpers.statbuild()

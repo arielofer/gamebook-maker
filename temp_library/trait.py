@@ -1,10 +1,9 @@
-"""skeleton for TextAdventure package"""
 import random
 
 
 class Trait(object):
     def __init__(self, name, const, dice_num=0):
-        """rolled based trait
+        """
             name: trait's name
             const: constant numeric value that adds to the randomized value to create the finale value of the trait
             dice_num: number of dices to be rolled
@@ -21,23 +20,18 @@ class Trait(object):
 
         self.value = dice_sum + const
 
-    def getName(self):
+    def get_name(self):
         return self.name
 
-    def getValue(self):
+    def get_value(self):
         return self.value
 
-    def setValue(self, num):
+    def set_value(self, num):
         self.value = num
 
-    def getDiceNum(self):
+    def get_dice_num(self):
         return self.dice_num
 
-    def getConst(self):
+    def get_const(self):
         return self.const
 
-    '''
-        def __init__(self, name, value):
-            """pre determined trait"""
-            self.name = name
-            self.value = value '''

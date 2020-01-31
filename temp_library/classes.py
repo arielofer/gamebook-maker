@@ -2,38 +2,38 @@ import temp_library
 import random
 
 class Decision(object):
-    def __init__(self, next__scene, successRate=1.0):
+    def __init__(self, next__scene, success_rate=1.0):
         self.next_scene = next__scene
-        self.successRate = successRate
+        self.success_rate = success_rate
 
-    def GetScene(self):
+    def get_scene(self):
         return self.next_scene
 
-    def GetSceneName(self):
-        return self.next_scene.getName()
+    def get_scene_name(self):
+        return self.next_scene.get_name()
 
-    def GetSuccessRate(self):
-        return self.successRate
+    def get_success_rate(self):
+        return self.success_rate
 
 
 class Scene(object):
-    def __init__(self, name, desc, choice):
+    def __init__(self, name, desc, choices):
         self.name = name
         self.desc = desc
-        self.choice = choice
+        self.choices = choices
         
 
-    def GetName(self):
+    def get_name(self):
         return self.name
 
-    def ShowDesc(self):
+    def show_desc(self):
         return self.desc
 
-    def ShowChoice(self):
+    def show_choices(self):
         choice_list = "available options:\n"
-        for options in range(len(self.choice)):
-            choice_list += self.choice[options].ShowText()+" "+self.choice[options].ShowKeys()+" "+\
-                          str(self.choice[options].GetDecision())+"\n"
+        for options in range(len(self.choices)-1):
+            choice_list += self.choices[options].show_text()+" "+self.choices[options].show_keys()+" "+\
+                          str(self.choices[options].get_decision())+"\n"
 
         return choice_list
 
@@ -44,15 +44,15 @@ class Option(object):
         self.key = key
         self.decision = decision
 
-    def ShowText(self):
+    def show_text(self):
         return self.text
 
-    def GetDecision(self):
-        return self.decision.getDecisionName()
+    def get_decision(self):
+        return self.decision.get_decision_name()
 
-    def ShowKeys(self):
+    def show_keys(self):
         key_list = "available keys: "
-        for i in range(len(self.key)):
+        for i in range(len(self.key)-1):
             key_list += self.key[i]
             if i + 1 <= len(self.key):
                 key_list += ", "
@@ -60,18 +60,18 @@ class Option(object):
         return key_list
 
 
-class ChanceOption(Option):
+class ChanceOptions(Option):
     def DecisionDraw(self):
         wheights = []
-        for i in range(len(self.decision)):
-            wheights[i] = self.decision[i].getSuccessRate()
+        for i in range(len(self.decision)-1):
+            wheights[i] = self.decision[i].get_success_rate()
         draw = random.choices(self.decision,wheights,k=1)
         return draw
 
 
 class IntroScene(Scene):
     desc = 'Hello from the intro'
-    choice = [
+    choices = [
         Option('Go left', key=['l', 'left'], decision=[Decision(NextScene1)]),
         Option('Go right', key=['r', 'right'], decision=[Decision(NextScene2)])
     ]
@@ -79,15 +79,15 @@ class IntroScene(Scene):
 
 class NextScene1(Scene):
     desc='Hello from the next scene 1'
-    choice=[
-        ChanceOption('Fight', key=['fight'],
+    choices=[
+        ChanceOptions('Fight', key=['fight'],
             decision=[
-                Decision(LuckyScene, successRate=0.5),
-                Decision(DeadScene, successRate=0.5)
+                Decision(LuckyScene, success_rate=0.5),
+                Decision(DeadScene, success_rate=0.5)
             ]),
-        ChanceOption('Flee', key=['flee'], 
+        ChanceOptions('Flee', key=['flee'], 
             decision=[
-                Decision(FleeScene, successRate= 0.5), 
-                Decision(DeadScene, successRate=0.5)
+                Decision(FleeScene, success_rate= 0.5), 
+                Decision(DeadScene, success_rate=0.5)
             ])
     ]
