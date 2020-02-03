@@ -1,5 +1,5 @@
 import random
-from option import *
+from temp_library.option import *
 
 class ChanceOptions(Option):
     
