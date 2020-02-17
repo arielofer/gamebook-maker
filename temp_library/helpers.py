@@ -2,14 +2,10 @@ import random
 import temp_library.trait
 
 
-def openscrn():  # for my personal game-change to your liking
-    opening_screen = ""
-
-    opening_screen += "          /\\\n         /**\\\n        /****\   /\\\n       /      \ /**\\\n      /  /\    /    \ \n     /  /  \  /      \\\n    /  /    \/ /\     \\\n   /  /  _   \/  \/\   \\\n__/__/__( )__/___/__\___\_"
-    opening_screen += '\nwelcome to the text adventure: "the warlock of firetop mountain"'
+def openscrn(screen):  # for my personal game-change to your liking
+    opening_screen = screen
 
     return opening_screen
-
 
 
 def statbuild():  # inserts initial values to attributes-change the strings and values according to your specific traits

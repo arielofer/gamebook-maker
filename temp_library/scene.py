@@ -21,8 +21,11 @@ class Scene(object):
         
         choice_list = "available options:\n"
         for options in range(len(self.choices)-1):
-            choice_list += self.choices[options].show_text()+" "+self.choices[options].show_keys()+" "+\
-                          str(self.choices[options].get_decision())+"\n"
-
+            text = self.choices[options].show_text()
+            keys = self.choices[options].show_keys()
+            des = str(self.choices[options].get_decision())
+            
+            choice_list += f'{text} , {keys} , {des} \n'
+        
         return choice_list
 
