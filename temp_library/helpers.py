@@ -57,7 +57,7 @@ def roll(trait, arg):
     lucky_message = "success - press enter to continue..."
     unlucky_message = "you were unlucky this time. press enter to continue..."
 
-    for i in range(dice_num):
+    for _ in range(dice_num):
         dice_roll += random.randint(1, 6)
 
     output = "you rolled a " + str(dice_roll)

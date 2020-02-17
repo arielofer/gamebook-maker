@@ -61,7 +61,7 @@ def main():
             helpers.statsdsply(SKILL, LUCK, STAMINA)
             print("You charge the door with your shoulder.\n" + Bstart + "Roll two dice." + Bstop + "\nIf the number rolled is less than or equal to 7, you succeed.\nIf the number rolled is greater than your skill, you fail at opening the door.")
             ok = helpers.roll(LUCK, 'less')
-            LUCK.setValue(LUCK.getValue()-1)
+            LUCK.set_value(LUCK.get_value()-1)
             if ok:
                 print()
                 # scene no. 343
@@ -70,7 +70,7 @@ def main():
                 helpers.statsdsply(SKILL, LUCK, STAMINA)
                 print("The door bursts open and you fall headlong into a room.\nBut your heart jumps as you realize you are not landing on the floor, but plunging down a pit of some kind!\nLuckily the pit is not particularly deep and you land in a heap less than two metres down.\nLose 1 stamina point for your bruises, climb out of the pit into the room and leave through the door, heading westwards.")
                 input("press enter to continue...")
-                STAMINA.setValue(STAMINA.getValue()-1)
+                STAMINA.set_value(STAMINA.get_value()-1)
             else:
 
                 # scene no. 156 - unlucky
@@ -94,7 +94,7 @@ def main():
     print("There is a right-hand turn to the north in the passage.\nCautiously you approach a sentry post on the corner and, as you look in, you can see a strange Goblin-like creature in leather armour asleep at his post.\nYou try to tiptoe past him.\nTest your Luck. If you are Lucky, he does not wake up and remains snoring loudly. If you are Unlucky, you step with a crunch on some loose ground and his eyes flick open.")
     input("press enter to continue...")
     ok = helpers.roll(LUCK, 'less')
-    LUCK.setValue(LUCK.getValue()-1)
+    LUCK.set_value(LUCK.get_value()-1)
 
     # unlucky
     if not ok:
@@ -104,8 +104,8 @@ def main():
         print("The creature that has just awakened is an ORC! He scrambles to his feet and turns to grasp at a rope which is probably the alarm bell. You must attack him quickly.\nORC SKILL 6 STAMINA 5")
         input("press enter to start the fight sequence...")
         # fight
-        STAMINA.setValue(helpers.fight(SKILL.getValue(), STAMINA.getValue(), 6, 5))
-        if STAMINA.getValue() <= 0:
+        STAMINA.set_value(helpers.fight(SKILL.get_value(), STAMINA.get_value(), 6, 5))
+        if STAMINA.get_value() <= 0:
             print("you died")
             sys.exit()
         input("you are victorious. press enter to continue...")
@@ -164,9 +164,9 @@ def main():
                     print("ORC SKILL 6 STAMINA 4")
                     choice = input("your choice: ")
                 if choice == "fight":
-                    STAMINA.setValue(helpers.fight(SKILL.getValue(), STAMINA.getValue(), 6, 4))
+                    STAMINA.set_value(helpers.fight(SKILL.get_value(), STAMINA.get_value(), 6, 4))
                     # defeat
-                    if STAMINA.getValue() <= 0:
+                    if STAMINA.get_value() <= 0:
                         print("you died")
                         sys.exit()
                     # victory

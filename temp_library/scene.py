@@ -1,4 +1,10 @@
 class Scene(object):
+    """
+        desc - A string containing what is hppening in this current scene
+
+        choices - a list of options that the user can choose to continue to the next scene
+
+    """
     def __init__(self, name, desc, choices):
         self.name = name
         self.desc = desc
@@ -11,6 +17,8 @@ class Scene(object):
         return self.desc
 
     def show_choices(self):
+        """return a string of all availabe choices"""
+        
         choice_list = "available options:\n"
         for options in range(len(self.choices)-1):
             choice_list += self.choices[options].show_text()+" "+self.choices[options].show_keys()+" "+\

@@ -4,7 +4,8 @@ import random
 class Trait(object):
     def __init__(self, name, const, dice_num=0):
         """
-            name: trait's name
+            a quaity given to the hero at the strat of the game, which the gameplay depends on
+
             const: constant numeric value that adds to the randomized value to create the finale value of the trait
             dice_num: number of dices to be rolled
 
@@ -15,7 +16,7 @@ class Trait(object):
         self.const = const
 
         dice_sum = 0
-        for i in range(dice_num):
+        for _ in range(dice_num):
             dice_sum += random.randint(1, 6)
 
         self.value = dice_sum + const
