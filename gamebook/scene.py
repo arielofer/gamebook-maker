@@ -1,5 +1,6 @@
 class Scene(object):
-    """
+    """ 
+        arguments:
         desc - A string containing what is hppening in this current scene
 
         choices - a list of options that the user can choose to continue to the next scene

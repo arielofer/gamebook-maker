@@ -2,15 +2,17 @@ import random
 
 
 class Trait(object):
+    """
+        a quaity given to the hero at the start of the game, which he needs to interact with the game's features
+
+        arguments:
+        
+        const: constant numeric value that adds to the randomized value to create the finale value of the trait
+
+        dice_num: number of dice to be rolled
+
+    """
     def __init__(self, name, const, dice_num=0):
-        """
-            a quaity given to the hero at the strat of the game, which the gameplay depends on
-
-            const: constant numeric value that adds to the randomized value to create the finale value of the trait
-            dice_num: number of dices to be rolled
-
-            :rtype = Trait
-        """
         self.name = name
         self.dice_num = dice_num
         self.const = const

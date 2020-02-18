@@ -1,8 +1,8 @@
 import random
-from temp_library.option import *
+from gamebook.option import *
 
 class ChanceOptions(Option):
-    
+    """an option which the player won't necessarily be succesful in preforming(depends on the decision's success rate)"""
     def DecisionDraw(self):
         wheights = []
         for i in range(len(self.decision)-1):
