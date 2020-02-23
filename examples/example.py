@@ -1,6 +1,6 @@
 import os
 import sys
-from temp_library import helpers
+from gamebook import helpers
 
 
 def main():
