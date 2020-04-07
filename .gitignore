@@ -7,5 +7,7 @@ __pycache__/
 
 .vscode/*
 
+.python-version
 
+.coverage
 

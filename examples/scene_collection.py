@@ -1,8 +1,8 @@
-from temp_library.scene import *
-from temp_library.option import *
-from temp_library.decision import *
-from temp_library.helpers import openscrn
-from temp_library.chance_option import ChanceOptions
+from gamebook.scene import *
+from gamebook.option import *
+from gamebook.decision import *
+from gamebook.helpers import openscrn
+from gamebook.chance_option import ChanceOptions
 
 
 class FleeScene(Scene):

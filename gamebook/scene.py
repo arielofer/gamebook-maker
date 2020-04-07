@@ -24,9 +24,9 @@ class Scene(object):
         for options in range(len(self.choices)-1):
             text = self.choices[options].show_text()
             keys = self.choices[options].show_keys()
-            des = str(self.choices[options].get_decision())
+            des = self.choices[options].show_decision()
             
-            choice_list += f'{text} , {keys} , {des} \n'
+            choice_list += f"{text} , {keys} , {des}\n"
         
         return choice_list
 

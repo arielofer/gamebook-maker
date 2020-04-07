@@ -7,14 +7,21 @@ class Option(object):
     def show_text(self):
         return self.text
 
-    def get_decision(self):
-        return self.decision.get_decision_name()
+    def show_decision(self):
+        decision_list = 'decisions:'
+        for i in range(len(self.decision)):    
+            scene = self.decision[i].get_scene_name()
+            rate = self.decision[i].get_success_rate()
+
+            decision_list +=f"{scene}, {rate}\n"
+        
+        return decision_list
 
     def show_keys(self):
         key_list = "available keys: "
-        for i in range(len(self.key)-1):
+        for i in range(len(self.key)):
             key_list += self.key[i]
-            if i + 1 <= len(self.key):
+            if i+1 < len(self.key):
                 key_list += ", "
 
         return key_list
