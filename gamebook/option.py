@@ -1,10 +1,10 @@
 class Option(object):
     def __init__(self, text, key, decision):
-        self.text = text
-        self.key = key
+        self.text = text # TODO: rename to title
+        self.key = key # TODO: rename to user_input
         self.decision = decision
 
-    def show_text(self):
+    def show_text(self): 
         return self.text
 
     def show_decision(self):
