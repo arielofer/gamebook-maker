@@ -18,6 +18,7 @@ class Trait(object):
         self.const = const
 
         dice_sum = 0
+        
         for _ in range(dice_num):
             dice_sum += random.randint(1, 6)
 

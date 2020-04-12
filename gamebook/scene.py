@@ -21,12 +21,12 @@ class Scene(object):
         """return a string of all availabe choices"""
         
         choice_list = "available options:\n"
-        for options in range(len(self.choices)-1):
-            text = self.choices[options].show_text()
-            keys = self.choices[options].show_keys()
-            des = self.choices[options].show_decision()
+        for option in self.choices:
+            text = option.show_text()
+            keys = option.show_keys()
+            nextscene = option.show_nextscene()
             
-            choice_list += f"{text} , {keys} , {des}\n"
+            choice_list += f"{text} , {keys} , {nextscene}\n"
         
         return choice_list
 
