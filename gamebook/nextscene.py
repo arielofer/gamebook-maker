@@ -1,4 +1,4 @@
-class Decision(object):
+class Next_scene(object):
     def __init__(self, next__scene, success_rate=1.0):
         self.next_scene = next__scene
         self.success_rate = success_rate
