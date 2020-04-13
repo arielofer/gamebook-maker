@@ -1,21 +1,21 @@
 class Option(object):
-    def __init__(self, text, key, decision):
+    def __init__(self, text, key, next_scene):
         self.text = text # TODO: rename to title
         self.key = key # TODO: rename to user_input
-        self.decision = decision
+        self.next_scene = next_scene
 
     def show_text(self): 
         return self.text
 
-    def show_decision(self):
-        decision_list = 'decisions:'
-        for i in range(len(self.decision)):    
-            scene = self.decision[i].get_scene_name()
-            rate = self.decision[i].get_success_rate()
+    def show_next_scene(self):
+        next_scene_list = 'next_scenes:'
+        for i in range(len(self.next_scene)):    
+            scene = self.next_scene[i].get_scene_name()
+            rate = self.next_scene[i].get_success_rate()
 
-            decision_list +=f"{scene}, {rate}\n"
+            next_scene_list +=f"{scene}, {rate}\n"
         
-        return decision_list
+        return next_scene_list
 
     def show_keys(self):
         key_list = "available keys: "

@@ -1,7 +1,9 @@
 import random
 
 class Options():
-    """an option which the player won't necessarily be succesful in preforming(depends on the decision's success rate)"""
+    """an option which the player won't necessarily be succesful in preforming
+    (depends on the decision's success rate)"""
+
     def __init__(self, options):
         self.options = options
 

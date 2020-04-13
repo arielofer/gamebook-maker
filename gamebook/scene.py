@@ -3,13 +3,13 @@ class Scene(object):
         arguments:
         desc - A string containing what is hppening in this current scene
 
-        choices - a list of options that the user can choose to continue to the next scene
+        options - a list of options that the user can choose to continue to the next scene
 
     """
-    def __init__(self, name, desc, choices):
+    def __init__(self, name, desc, options):
         self.name = name
         self.desc = desc
-        self.choices = choices
+        self.options = options 
         
     def get_name(self):
         return self.name
@@ -17,14 +17,14 @@ class Scene(object):
     def show_desc(self):
         return self.desc
 
-    def show_choices(self):
-        """return a string of all availabe choices"""
+    def show_options(self):
+        """return a string of all availabe options"""
         
         choice_list = "available options:\n"
-        for options in range(len(self.choices)-1):
-            text = self.choices[options].show_text()
-            keys = self.choices[options].show_keys()
-            des = self.choices[options].show_decision()
+        for option in self.options:
+            text = option.show_text()
+            keys = option.show_keys()
+            des = option.show_decision()
             
             choice_list += f"{text} , {keys} , {des}\n"
         

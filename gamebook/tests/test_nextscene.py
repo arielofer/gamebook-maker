@@ -1,17 +1,10 @@
-from gamebook.tests.mock_scenes import scene1
-from gamebook.tests.mock_nextscene import nextscene1
+from gamebook.nextscene import NextScene
+from gamebook.scene import Scene
+from gamebook.tests.test_scene import scene1
 
-"""
-    using mock Next_scene nextscene1:
+nextscene1 = NextScene(scene1, 1.0)
 
-    nextscene1:
-        next_scene: scene1
-        success_rate: 1.0 (default)
-    
-"""
-def test_initialization():
+""" scene1: name = "scene1" """
 
-    assert nextscene1.get_scene() == scene1
-    assert nextscene1.get_scene_name() == scene1.get_name()
-    assert nextscene1.get_success_rate() == 1.0
-
+def test_get_scene_name():
+    assert nextscene1.get_scene_name == "scene1"

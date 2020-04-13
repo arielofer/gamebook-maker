@@ -1,21 +1,15 @@
-from gamebook.tests.mock_trait import trait1,trait2
+from gamebook.trait import Trait
 
-"""
-using mock scenes trait1 and trait2
-
-trait1:
-    name: trait1
-    const: 6
-    dice_num: not set - checking if default is 0
-
-trait2:
-    dice_num: 1
-"""
+trait1 = Trait("trait1", 6, dice_num=3)
 
 def test_initialization():
 
     assert trait1.get_name() == "trait1"
     assert trait1.get_const() == 6
-    assert trait1.get_dice_num() == 0
-    assert trait2.get_dice_num() == 1
-    # need to find a way to assert trait.value 
+    assert trait1.get_dice_num() == 3
+    
+def test_get_value():
+    """ trait1's value is randomized but should be between 3 to 18"""
+    result = trait1.get_value() >= 3 and trait1.get_value() <= 18
+
+    assert result == True
