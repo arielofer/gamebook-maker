@@ -1,7 +1,5 @@
 from gamebook.trait import Trait
 
-
-
 def test_initialization():
 
     trait1 = Trait("trait1", 6, dice_num=3)
