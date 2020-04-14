@@ -18,6 +18,8 @@ class Option(object):
         return next_scene_list
 
     def show_keys(self):
+        """returns a string of all available keys"""
+
         key_list = "available keys: "
         for i in range(len(self.key)):
             key_list += self.key[i]
@@ -25,4 +27,3 @@ class Option(object):
                 key_list += ", "
 
         return key_list
-
