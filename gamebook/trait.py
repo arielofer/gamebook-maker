@@ -14,7 +14,7 @@ class Trait(object):
     """
     def __init__(self, name, const, dice_num=0):
         self.name = name
-        self.dice_num = dice_num
+        self.dice_num = dice_num # TODO: rename to amount 
         self.const = const
 
         dice_sum = 0
