@@ -1,17 +1,17 @@
-from gamebook.tests.mock_scenes import scene1
-from gamebook.tests.mock_nextscene import nextscene1
+from gamebook.nextscene import NextScene
+from gamebook.scene import Scene
+from gamebook.option import Option
 
-"""
-    using mock Next_scene nextscene1:
+def test_get_scene_name():
 
-    nextscene1:
-        next_scene: scene1
-        success_rate: 1.0 (default)
+    dead_scene = Scene("death_scene", "game over", [])
     
-"""
-def test_initialization():
+    scene1 = Scene("scene1", "At last your two-day hike is over.",
+    [
+        Option('Go left', user_input=['l', 'left'], next_scene=[NextScene(dead_scene)]),
+        Option('Go right', user_input=['r', 'right'], next_scene=[NextScene(dead_scene)])
+    ])
 
-    assert nextscene1.get_scene() == scene1
-    assert nextscene1.get_scene_name() == scene1.get_name()
-    assert nextscene1.get_success_rate() == 1.0
+    nextscene1 = NextScene(scene1, 1.0)
 
+    assert nextscene1.get_scene_name() == "scene1"

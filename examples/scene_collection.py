@@ -1,81 +1,81 @@
 from gamebook.scene import *
 from gamebook.option import *
-from gamebook.decision import *
+from gamebook.nextscene import *
 from gamebook.helpers import openscrn
-from gamebook.chance_option import ChanceOptions
+from gamebook.options import Options
 
 
 class FleeScene(Scene):
-    def __init__(self, name, desc, choices):
+    def __init__(self, name, desc, options):
         super().__init__(
             name = "fleeing scene",
             desc='game over - you fled',
-            choices=[]
+            options=[]
         )
 
 class LuckyScene(Scene):
-    def __init__(self, name, desc, choices):
+    def __init__(self, name, desc, options):
         super().__init__(
             name = "luck scene",
             desc='game over - you won',
-            choices=[]
+            options=[]
         )
 
 class DeadScene(Scene):
-    def __init__(self, name, desc, choices):
+    def __init__(self, name, desc, options):
         super().__init__(
             name = "death scene",
             desc='game over - you died',
-            choices=[]
+            options=[]
         )
 
 class NextScene2(Scene):
-    def __init__(self, name, desc, choices):
+    def __init__(self, name, desc, options):
         super().__init__(
             name = "scene2",
             desc='Hello from the next scene 2',
-            choices=[
-                ChanceOptions('Fight', key=['fight'],
-                    decision=[
-                        Decision(LuckyScene, success_rate=0.5),
-                        Decision(DeadScene, success_rate=0.5)
+            options=[
+                Option('Fight', user_input=['fight'],
+                    next_scene=[
+                        NextScene(LuckyScene, success_rate=0.5),
+                        NextScene(DeadScene, success_rate=0.5)
                     ]),
-                ChanceOptions('Flee', key=['flee'], 
-                    decision=[
-                        Decision(FleeScene, success_rate= 0.5), 
-                        Decision(DeadScene, success_rate=0.5)
+                Option('Flee', user_input=['flee'], 
+                    next_scene=[
+                        NextScene(FleeScene, success_rate= 0.5), 
+                        NextScene(DeadScene, success_rate=0.5)
                     ])
             ]
         )
 
 class NextScene1(Scene):
-    def __init__(self, name, desc, choices):
+    def __init__(self, name, desc, options):
         super().__init__(
             name = "scene1",
             desc='Hello from the next scene 1',
-            choices=[
-                ChanceOptions('Fight', key=['fight'],
-                    decision=[
-                        Decision(LuckyScene, success_rate=0.5),
-                        Decision(DeadScene, success_rate=0.5)
+            options=[
+                Option('Fight', user_input=['fight'],
+                    next_scene=[
+                        NextScene(LuckyScene, success_rate=0.5),
+                        NextScene(DeadScene, success_rate=0.5)
                     ]),
-                ChanceOptions('Flee', key=['flee'], 
-                    decision=[
-                        Decision(FleeScene, success_rate= 0.5), 
-                        Decision(DeadScene, success_rate=0.5)
+                Option('Flee', user_input=['flee'], 
+                    next_scene=[
+                        NextScene(FleeScene, success_rate= 0.5), 
+                        NextScene(DeadScene, success_rate=0.5)
                     ])
             ]
         )
     
 
 class IntroScene(Scene):
-    def __init__(self, name, desc, choices):
+    def __init__(self, name, desc, options):
         super().__init__(
             name = "intro",
             desc = "At last your two-day hike is over.\nYou unsheathe your sword",
-            choices = [
-                Option('Go left', key=['l', 'left'], decision=[Decision(NextScene1)]),
-                Option('Go right', key=['r', 'right'], decision=[Decision(NextScene2)])
+            options = [
+                Option('Go left', user_input=['l', 'left'], next_scene=[NextScene(NextScene1)]),
+                Option('Go right', user_input=['r', 'right'], next_scene=[NextScene(NextScene2)])
             ]
         )
 

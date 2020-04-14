@@ -1,28 +1,28 @@
 class Option(object):
-    def __init__(self, text, key, nextscene):
-        self.text = text 
-        self.key = key
-        self.nextscene = nextscene
+    def __init__(self, title, user_input, next_scene):
+        self.title = title
+        self.user_input = user_input
+        self.next_scene = next_scene
 
-    def show_text(self):
-        return self.text
+    def show_title(self): 
+        return self.title
 
-    def show_nextscene(self):
-        nextscene_list = 'next scenes:'
-        for i in self.nextscene:    
+    def show_next_scene(self):
+        next_scene_string = 'next scenes:'
+        for i in self.next_scene:    
             scene = i.get_scene_name()
             rate = i.get_success_rate()
-
-            nextscene_list +=f"{scene}, {rate}\n"
+            next_scene_string +=f"{scene}, {rate}\n"
         
-        return nextscene_list
+        return next_scene_string
 
-    def show_keys(self):
-        key_list = "available keys: "
-        for i in self.key:
-            key_list += i
-            if i+1 < len(self.key):
-                key_list += ", "
+    def show_user_inputs(self):
+        """returns a string of all available user_inputs"""
 
-        return key_list
+        user_input_string = "available user_inputs: "
+        user_input_string += ", ".join(self.user_input)
 
+        return user_input_string
+
+    def get_success_rate(self):
+        return self.next_scene.success_rate

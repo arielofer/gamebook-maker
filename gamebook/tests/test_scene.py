@@ -1,29 +1,23 @@
-from gamebook.tests.mock_scenes import scene1, dead_scene
+from gamebook.scene import Scene
+from gamebook.nextscene import NextScene
+from gamebook.option import Option
 
-"""
-using mock scenes scene1 and dead_scene
 
-scene1:
-    name: scene1
-    desc: welcome to scene no 1
-    choices:[
-            Option('Go left', key=['l', 'left'], nextscene=[Next_scene(dead_scene)]),
-            Option('Go right', key=['r', 'right'], nextscene=[Next_scene(dead_scene)])
-            ]
+def test_show_options():
+    
+    dead_scene = Scene("death scene", "game over", [])
 
-dead_scene:
-    name: death scene
-    desc: game over
-    choices:[]
-"""
+    scene1 = Scene("scene1", "At last your two-day hike is over.",
+    [
+        Option('Go left', user_input=['l', 'left'], next_scene=[NextScene(dead_scene)]),
+        Option('Go right', user_input=['r', 'right'], next_scene=[NextScene(dead_scene)])
+    ])
 
-def test_initialization():
 
-    assert scene1.get_name() == "scene1"
-    assert scene1.show_desc() == "welcome to scene no 1"
-    assert scene1.show_choices() == "available options:\nGo left , available keys: l, left , next scenes:death scene, 1.0\n\nGo right , available keys: r, right , next scenes:death scene, 1.0\n\n"
+    # the string is very long so i cut it to multiple sections
 
-def test_recieving_next_scene():
+    result = "available options:\nGo left , available user_inputs: l, left , next scenes:death scene, 1.0\n\n"
+    result += "Go right , available user_inputs: r, right , next scenes:death scene, 1.0\n\n"
 
-    assert scene1.choices[0].nextscene[0].get_scene() == dead_scene
+    assert scene1.show_options() == result
 
