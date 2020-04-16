@@ -13,7 +13,6 @@ def test_get_value():
     example_trait = Trait("example_trait", 6, amount=3)
 
     """ example_trait's value is randomized but should be between 9 to 24"""
-    print(example_trait.get_value())
     result = example_trait.get_value() >= 9 and example_trait.get_value() <= 24
 
     assert result == True

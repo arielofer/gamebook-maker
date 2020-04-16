@@ -9,9 +9,9 @@ class Option(object):
 
     def show_next_scene(self):
         next_scene_string = 'next scenes:'
-        for i in self.next_scene:    
-            scene = i.get_scene_name()
-            rate = i.get_success_rate()
+        for nextscene in self.next_scene:    
+            scene = nextscene.get_scene_name()
+            rate = nextscene.get_success_rate()
             next_scene_string +=f"{scene}, {rate}\n"
         
         return next_scene_string

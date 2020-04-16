@@ -3,11 +3,13 @@ import random
 
 class Trait(object):
     """
-        a quaity given to the hero at the start of the game, which he needs to interact with the game's features
+        a quaity given to the hero at the start of the game, which he needs to 
+        interact with the game's features
 
         arguments:
         
-        min_value: constant numeric value that adds to the randomized value to create the finale value of the trait
+        min_value: constant numeric value that adds to the randomized value to 
+        create the finale value of the trait
 
         amount: number of dice to be rolled
 
