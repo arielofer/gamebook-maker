@@ -3,25 +3,28 @@ import random
 
 class Trait(object):
     """
-        a quaity given to the hero at the start of the game, which he needs to interact with the game's features
+        a quaity given to the hero at the start of the game, which he needs to 
+        interact with the game's features
 
         arguments:
         
-        const: constant numeric value that adds to the randomized value to create the finale value of the trait
+        min_value: constant numeric value that adds to the randomized value to 
+        create the finale value of the trait
 
-        dice_num: number of dice to be rolled
+        amount: number of dice to be rolled
 
     """
-    def __init__(self, name, const, dice_num=0):
+    def __init__(self, name, min_value, amount=0):
         self.name = name
-        self.dice_num = dice_num # TODO: rename to amount 
-        self.const = const
+        self.amount = amount 
+        self.min_value = min_value
 
         dice_sum = 0
-        for _ in range(dice_num):
+        
+        for _ in range(amount):
             dice_sum += random.randint(1, 6)
 
-        self.value = dice_sum + const
+        self.value = dice_sum + min_value
 
     def get_name(self):
         return self.name
@@ -32,9 +35,9 @@ class Trait(object):
     def set_value(self, num):
         self.value = num
 
-    def get_dice_num(self):
-        return self.dice_num
+    def get_amount(self):
+        return self.amount
 
-    def get_const(self):
-        return self.const
+    def get_min_value(self):
+        return self.min_value
 

@@ -12,24 +12,24 @@ def openscrn(screen):
 
 def statbuild():
     """
-    stats setting function: creates traits with given conduments(name, const, dice_num) and emulates the creation to the player(asks it to roll the dice)
+    stats setting function: creates traits with given conduments(name, min_value, amount) and emulates the creation to the player(asks it to roll the dice)
     """
     trait1 = gamebook.trait.Trait("Skill", 6, 1)
     trait2 = gamebook.trait.Trait("Luck", 6, 1)
     trait3 = gamebook.trait.Trait("Stamina", 12, 2)
 
     # trait1
-    print("to set your "+trait1.get_name()+", please role "+str(trait1.get_dice_num())+" die and add "+str(trait1.get_const()))
+    print("to set your "+trait1.get_name()+", please role "+str(trait1.get_amount())+" die and add "+str(trait1.get_min_value()))
     input("press enter to roll...")
     print("your " + trait1.get_name() + " is in total: " + str(trait1.get_value()))
 
     # trait2
-    print("to set your "+trait2.get_name()+", please role "+str(trait2.get_dice_num())+" die and add "+str(trait2.get_const()))
+    print("to set your "+trait2.get_name()+", please role "+str(trait2.get_amount())+" die and add "+str(trait2.get_min_value()))
     input("press enter to roll...")
     print("your " + trait2.get_name() + " is in total: " + str(trait2.get_value()))
 
     # trait3
-    print("to set your "+trait3.get_name()+", please role "+str(trait3.get_dice_num())+" die and add "+str(trait3.get_const()))
+    print("to set your "+trait3.get_name()+", please role "+str(trait3.get_amount())+" die and add "+str(trait3.get_min_value()))
     input("press enter to roll...")
     print("your " + trait3.get_name() + " is in total: " + str(trait3.get_value()))
 
@@ -64,13 +64,13 @@ def roll(trait, cond):
 
     input("press enter to roll the dice...")
     dice_roll = 0
-    dice_num = trait.get_dice_num()
+    amount = trait.get_amount()
     trait_value = trait.get_value()
 
     lucky_message = "success - press enter to continue..."
     unlucky_message = "you were unlucky this time. press enter to continue..."
 
-    for _ in range(dice_num):
+    for _ in range(amount):
         dice_roll += random.randint(1, 6)
 
     output = "you rolled a " + str(dice_roll)

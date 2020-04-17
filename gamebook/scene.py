@@ -1,3 +1,6 @@
+import random
+from gamebook.option import Option
+
 class Scene(object):
     """ 
         arguments:
@@ -23,11 +26,35 @@ class Scene(object):
         
         choice_list = "available options:\n"
         for option in self.options:
-            text = option.show_text()
-            keys = option.show_keys()
-            des = option.show_decision()
+            title = option.show_title()
+            user_inputs = option.show_user_inputs()
+            nextscene = option.show_next_scenes()
             
-            choice_list += f"{text} , {keys} , {des}\n"
+            choice_list += f"{title} , {user_inputs} , {nextscene}\n"
         
         return choice_list
 
+    def get_option_from_list(self,option_to_find):
+        for opt in self.options:
+            if option_to_find == opt:
+                option_to_return = option_to_find
+        
+        return option_to_return
+
+    def next_scene_draw(self, option_to_evaluate):
+        
+        if len(self.options) == 0:
+            raise ValueError("options is empty")
+        
+        option = self.get_option_from_list(option_to_evaluate)
+
+        if not option:
+            raise Exception("this option does not exist in this scene")
+
+        if type(option.next_scenes) == list:
+            weights = [i.get_success_rate() for i in option.next_scenes]
+        else:
+            return option.next_scenes
+
+        draw = random.choices(option.next_scenes,weights,k=1)
+        return draw[0]
