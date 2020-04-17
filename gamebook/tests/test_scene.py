@@ -33,10 +33,10 @@ def test_draw():
 
     example_scene=Scene("exapmle scene","this is an example scene",options=[option1,option2])
 
-    result = example_scene.next_scene_draw(option1)#when next_scene is a list
+    result = example_scene.next_scene_draw("n")#when next_scene is a list
     assert result.get_scene_name() == scene1_name
     
-    result = example_scene.next_scene_draw(option2)#when next_scene is not a list
+    result = example_scene.next_scene_draw("m")#when next_scene is not a list
     assert result.get_scene_name() == scene1_name
 
 def test_draw_when_options_is_empty():

@@ -1,15 +1,17 @@
 import os
 import sys
 from gamebook import helpers
-
+from gamebook.terminal_output import TerminalOutput
 
 def main():
     # opening screen
     opening_screen = ""
     opening_screen += r"          /\\\n         /**\\\n        /****\   /\\\n       /      \ /**\\\n      /  /\    /    \ \n     /  /  \  /      \\\n    /  /    \/ /\     \\\n   /  /  _   \/  \/\   \\\n__/__/__( )__/___/__\___\_"
     opening_screen += '\nwelcome to the text adventure: "the warlock of firetop mountain"'
+    output_instance = TerminalOutput()
 
-    print(helpers.openscrn(opening_screen))
+    # print(helpers.openscrn(opening_screen))
+    output_instance.output(opening_screen)
 
     input("press enter to start your quest...")
     os.system("cls")
@@ -21,7 +23,7 @@ def main():
     tester = False
     # scene no. 1
     while not tester:
-        print(print(helpers.statsdsply(SKILL, LUCK, STAMINA)))
+        print(helpers.statsdsply(SKILL, LUCK, STAMINA))
         
         print("At last your two-day hike is over.\nYou unsheathe your sword, lay it on the ground and sigh with relief as you lower yourself down on to the mossy rocks to sit for a moment's rest.\nYou stretch, rub your eyes and finally look up at Firetop Mountain.")
         print("The very mountain itself looks menacing.\nThe steep face in front of you looks to have been savaged by the claws of some gargantuan beast.\nSharp rocky crags jut out at unnatural angles.\nAt the top of the mountain you can see the eerie red colouring - probably some strange vegetation-which has given the mountain its name.\nPerhaps no one will ever know exactly what grows up there, as climbing the peak must surely be impossible.")

@@ -34,20 +34,22 @@ class Scene(object):
         
         return choice_list
 
-    def get_option_from_list(self,option_to_find):
-        for opt in self.options:
-            if option_to_find == opt:
-                option_to_return = option_to_find
-        
+    def get_option_by_user_input(self,user_input_recieved):
+        option_to_return = Option("",[],[])
+        for option in self.options:
+            for user_input in option.user_input:
+                if user_input == user_input_recieved:
+                    option_to_return = option
+
         return option_to_return
 
-    def next_scene_draw(self, option_to_evaluate):
+    def next_scene_draw(self, user_input_from_option):
         
         if len(self.options) == 0:
             raise ValueError("options is empty")
         
-        option = self.get_option_from_list(option_to_evaluate)
-
+        option = self.get_option_by_user_input(user_input_from_option)
+        
         if not option:
             raise Exception("this option does not exist in this scene")
 
