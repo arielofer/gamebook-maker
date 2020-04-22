@@ -36,7 +36,7 @@ def statbuild():
     return trait1, trait2, trait3
 
 
-def statsdsply(trait1, trait2, trait3):
+def statsdisplay(trait1, trait2, trait3):
     """a function that creates a nice display of the hero's stats"""
 
     display = ' ------------------------------\n'

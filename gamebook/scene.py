@@ -35,20 +35,24 @@ class Scene(object):
         return choice_list
 
     def get_option_by_user_input(self,user_input_recieved):
-        option_to_return = Option("",[],[])
         for option in self.options:
             for user_input in option.user_input:
                 if user_input == user_input_recieved:
-                    option_to_return = option
+                    return option
 
-        return option_to_return
+        raise ValueError("no option with this user_input found")
 
-    def next_scene_draw(self, user_input_from_option):
+    def next_scene_draw(self, option_user_key):
+        """
+            picks the next scene randomly based on its success_rate
+
+            option_user_key: the user_input of the option the user chose
+        """
         
         if len(self.options) == 0:
             raise ValueError("options is empty")
         
-        option = self.get_option_by_user_input(user_input_from_option)
+        option = self.get_option_by_user_input(option_user_key)
         
         if not option:
             raise Exception("this option does not exist in this scene")
