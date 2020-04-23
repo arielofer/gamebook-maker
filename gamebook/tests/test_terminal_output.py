@@ -14,5 +14,7 @@ def test_is_content_recieved():
 
     output_instance = TerminalOutput()
 
-    assert output_instance.output(example_scene.show_desc()) == example_desc
-    assert output_instance.output(empty_scene.get_name()) == content_error
+    assert output_instance.output(example_scene.show_desc()) ==\
+        print(example_desc)
+    assert output_instance.output(empty_scene.get_name()) ==\
+        print(content_error)
