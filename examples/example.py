@@ -3,6 +3,7 @@ import sys
 from gamebook import helpers
 from gamebook.terminal_output import TerminalOutput
 
+
 def main():
     # opening screen
     opening_screen = ""
@@ -20,11 +21,11 @@ def main():
     os.system("cls")
 
     choice = " "
-    tester = False
+    valid_choice_check = False
     # scene no. 1
-    while not tester:
-        print(helpers.statsdsply(SKILL, LUCK, STAMINA))
-        
+    while not valid_choice_check:
+        print(helpers.stats_display(SKILL, LUCK, STAMINA))
+
         print("At last your two-day hike is over.\nYou unsheathe your sword, lay it on the ground and sigh with relief as you lower yourself down on to the mossy rocks to sit for a moment's rest.\nYou stretch, rub your eyes and finally look up at Firetop Mountain.")
         print("The very mountain itself looks menacing.\nThe steep face in front of you looks to have been savaged by the claws of some gargantuan beast.\nSharp rocky crags jut out at unnatural angles.\nAt the top of the mountain you can see the eerie red colouring - probably some strange vegetation-which has given the mountain its name.\nPerhaps no one will ever know exactly what grows up there, as climbing the peak must surely be impossible.")
         print("Your quest lies ahead of you.\nAcross the clearing is a dark cave entrance.\nYou pick up your sword, get to your feet and consider what dangers may lie ahead of you.\nBut with determination, you thrust the sword home into its scabbard and approach the cave.")
@@ -35,7 +36,7 @@ def main():
         choice = input("your choice: ")
 
         if choice == 'east' or choice == 'west':
-            tester = True
+            valid_choice_check = True
         else:
             print()
             input("this is an invalid choice. please press enter to try again...")
@@ -44,18 +45,18 @@ def main():
     if choice == 'east':
         # scene no. 278
 
-        tester = False
+        valid_choice_check = False
 
-        while not tester:
+        while not valid_choice_check:
             os.system("cls")
-            print(print(helpers.statsdsply(SKILL, LUCK, STAMINA)))
+            print(helpers.stats_display(SKILL, LUCK, STAMINA))
 
             print("The passageway soon comes to an end at a locked wooden door.\nYou listen at the door but hear nothing.")
             print("Will you try to" + Bstart + " charge" + Bstop + " the door down or would you rather" + Bstart +" turn around" + Bstop + " and go back to the junction?")
             choice = input("your choice: ")
 
             if choice == "charge" or choice == "turn around":
-                tester = True
+                valid_choice_check = True
             else:
                 print()
                 input("this is an invalid choice. please press enter to try again...")
@@ -66,7 +67,7 @@ def main():
             # scene no. 156
 
             os.system("cls")
-            print(print(helpers.statsdsply(SKILL, LUCK, STAMINA)))
+            print(helpers.stats_display(SKILL, LUCK, STAMINA))
 
             print("You charge the door with your shoulder.\n" + Bstart + "Roll two dice." + Bstop + "\nIf the number rolled is less than or equal to 7, you succeed.\nIf the number rolled is greater than your skill, you fail at opening the door.")
             ok = helpers.roll(LUCK, 'less')
@@ -76,7 +77,7 @@ def main():
                 # scene no. 343
 
                 os.system("cls")
-                print(print(helpers.statsdsply(SKILL, LUCK, STAMINA)))
+                print(helpers.stats_display(SKILL, LUCK, STAMINA))
 
                 print("The door bursts open and you fall headlong into a room.\nBut your heart jumps as you realize you are not landing on the floor, but plunging down a pit of some kind!\nLuckily the pit is not particularly deep and you land in a heap less than two metres down.\nLose 1 stamina point for your bruises, climb out of the pit into the room and leave through the door, heading westwards.")
                 input("press enter to continue...")
@@ -86,7 +87,7 @@ def main():
                 # scene no. 156 - unlucky
 
                 os.system("cls")
-                print(print(helpers.statsdsply(SKILL, LUCK, STAMINA)))
+                print(helpers.stats_display(SKILL, LUCK, STAMINA))
 
                 print("you rub your bruised shoulder and decide against trying again and go back to the junction.")
                 input("press enter to continue...")
@@ -94,7 +95,7 @@ def main():
         # scene no. 92
 
         os.system("cls")
-        print(print(helpers.statsdsply(SKILL, LUCK, STAMINA)))
+        print(helpers.stats_display(SKILL, LUCK, STAMINA))
 
         print("You arrive back at the junction in the passage.\nYou look left to see the cave entrance in the dim distance but walk straight on.")
         input("press enter to continue...")
@@ -102,7 +103,7 @@ def main():
     # scene no. 71
 
     os.system("cls")
-    print(print(helpers.statsdsply(SKILL, LUCK, STAMINA)))
+    print(helpers.stats_display(SKILL, LUCK, STAMINA))
 
     print("There is a right-hand turn to the north in the passage.\nCautiously you approach a sentry post on the corner and, as you look in, you can see a strange Goblin-like creature in leather armour asleep at his post.\nYou try to tiptoe past him.\nTest your Luck. If you are Lucky, he does not wake up and remains snoring loudly. If you are Unlucky, you step with a crunch on some loose ground and his eyes flick open.")
     input("press enter to continue...")
@@ -113,7 +114,7 @@ def main():
     if not ok:
         # scene no 248
         os.system("cls")
-        print(print(helpers.statsdsply(SKILL, LUCK, STAMINA)))
+        print(helpers.stats_display(SKILL, LUCK, STAMINA))
         print("The creature that has just awakened is an ORC! He scrambles to his feet and turns to grasp at a rope which is probably the alarm bell. You must attack him quickly.\nORC SKILL 6 STAMINA 5")
         input("press enter to start the fight sequence...")
         # fight
@@ -126,21 +127,21 @@ def main():
     #lucky
     else:
         os.system("cls")
-        print(helpers.statsdsply(SKILL, LUCK, STAMINA))
+        print(helpers.stats_display(SKILL, LUCK, STAMINA))
         print("the creature does not wake up and remains snoring loudly. you walk past him.")
         input("press enter to continue...")
 
     # scene no. 301
 
-    tester = False
-    while not tester:
+    valid_choice_check = False
+    while not valid_choice_check:
         os.system("cls")
-        print(helpers.statsdsply(SKILL, LUCK, STAMINA))
+        print(helpers.stats_display(SKILL, LUCK, STAMINA))
         print("To your left, on the west face of the passage, there is a rough-cut wooden door.\nYou listen at the door and can hear a rasping sound which may be some sort of creature snoring.\nDo you want to "+Bstart+"open"+Bstop+" the door or do you wish to "+Bstart+"press on"+Bstop+" northwards?")
         choice = input("your choice: ")
 
         if choice == "open" or choice == "press on":
-            tester = True
+            valid_choice_check = True
         else:
             print()
             input("this is an invalid choice. please press enter to try again...")
@@ -148,16 +149,16 @@ def main():
 
     if choice == "open":
         # scene no. 82
-        tester = False
-        while not tester:
+        valid_choice_check = False
+        while not valid_choice_check:
             os.system("cls")
-            print(helpers.statsdsply(SKILL, LUCK, STAMINA))
+            print(helpers.stats_display(SKILL, LUCK, STAMINA))
             print("The door opens to reveal a small, smelly room.\nIn the centre of the room is a rickety wooden table on which stands a lit candle.\nUnderneath the table is a small wooden box.\nAsleep on a straw mattress in the far corner of the room is a short, stocky creature with an ugly, warty face; the same sort of creature that you found asleep at the sentry post.")
             print("He must be the guard for the night watch.\nYou may either "+Bstart+"return"+Bstop+" to the corridor and press on northwards or creep into the room and try to "+Bstart+"steal"+Bstop+" the box without waking the creature.\nIf you want to try to steal the box, Test your Luck. If you are Lucky, he does not wake up.")
             choice = input("your choice: ")
 
             if choice == "return" or choice == "steal":
-                tester = True
+                valid_choice_check = True
             else:
                 print()
                 input("this is an invalid choice. please press enter to try again...")
@@ -168,10 +169,10 @@ def main():
 
             if not ok:
                 # scene no. 33
-                tester = False
-                while not tester:
+                valid_choice_check = False
+                while not valid_choice_check:
                     os.system("cls")
-                    print(helpers.statsdsply(SKILL, LUCK, STAMINA))
+                    print(helpers.stats_display(SKILL, LUCK, STAMINA))
                     print("The sleeping creature awakens startled.\nHe jumps up and rushes at you, unarmed.\nWith your sword you should be able to defeat him, but his sharp teeth look rather vicious.\nYou may "+Bstart+"Escape"+Bstop+" through the door or stand and "+Bstart+"fight"+Bstop+" the ORC who is attacking you.")
                     print("If you defeat the creature, you may take the box.")
                     print("ORC SKILL 6 STAMINA 4")

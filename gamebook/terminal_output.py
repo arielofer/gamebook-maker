@@ -1,7 +1,8 @@
 from gamebook.output import Output
 
+
 class TerminalOutput(Output):
-    def output(self,content):
+    def output(self, content):
         if content:
             print(content)
         else:
