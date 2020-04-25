@@ -25,15 +25,26 @@ class Scene(object):
     def show_options(self):
         """return a string of all availabe options"""
 
-        choice_list = "available options:\n"
+        choice_string = "available options:\n"
+
+        if not isinstance(self.options, list):
+            option = self.options
+            title = option.show_title()
+            user_inputs = option.show_user_inputs()
+            nextscene = option.show_next_scenes()
+
+            choice_string += (f"{title} , {user_inputs} , {nextscene}")
+
+            return choice_string
+
         for option in self.options:
             title = option.show_title()
             user_inputs = option.show_user_inputs()
             nextscene = option.show_next_scenes()
 
-            choice_list += f"{title} , {user_inputs} , {nextscene}\n"
+            choice_string += f"{title} , {user_inputs} , {nextscene}\n"
 
-        return choice_list
+        return choice_string
 
     def get_option_by_user_input(self, user_input_recieved):
         for option in self.options:
@@ -58,10 +69,10 @@ class Scene(object):
             raise Exception("this option does not exist in this scene")
 
         if option.next_scenes:
-            if type(option.next_scenes) == list:
-                weights = [i.get_success_rate() for i in option.next_scenes]
-            else:
+            if not isinstance(option.next_scenes, list) or\
+                 len(option.next_scenes) == 1:
                 return option.next_scenes
+            weights = [i.get_success_rate() for i in option.next_scenes]
         else:
             raise ValueError("this option has no next_scene")
 

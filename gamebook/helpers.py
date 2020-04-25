@@ -3,13 +3,6 @@ import gamebook.trait
 from gamebook.terminal_output import TerminalOutput
 
 
-def open_screen(screen):
-    """ presents the opening screen for your game """
-
-    opening_screen = screen
-    return opening_screen
-
-
 def trait_init():
     """
     stats setting function:creates traits with given conduments(name, min_value
@@ -23,31 +16,31 @@ def trait_init():
     trait3 = gamebook.trait.Trait("Stamina", 12, 2)
 
     # trait1
-    output_instance.output("to set your "+trait1.get_name()+", please role "
-                           + str(trait1.get_amount())+" die and add "
-                           + str(trait1.get_min_value()))
+    output_instance.output(f"to set your {trait1.get_name()}, please role "
+                           f"{trait1.get_amount()} die and add "
+                           f"{trait1.get_min_value()}")
 
     input("press enter to roll...")
-    output_instance.output("your " + trait1.get_name() + " is in total: "
-                           + str(trait1.get_value()))
+    output_instance.output(f"your {trait1.get_name()} is in total: "
+                           f"{trait1.get_value()}")
 
     # trait2
-    output_instance.output("to set your "+trait2.get_name()+", please role "
-                           + str(trait2.get_amount())+" die and add "
-                           + str(trait2.get_min_value()))
+    output_instance.output(f"to set your {trait2.get_name()}, please role "
+                           f"{trait2.get_amount()} die and add "
+                           f"{trait2.get_min_value()}")
 
     input("press enter to roll...")
-    output_instance.output("your " + trait2.get_name() + " is in total: "
-                           + str(trait2.get_value()))
+    output_instance.output(f"your {trait2.get_name()} is in total: "
+                           f"{trait2.get_value()}")
 
     # trait3
-    output_instance.output("to set your "+trait3.get_name()+", please role "
-                           + str(trait3.get_amount())+" die and add "
-                           + str(trait3.get_min_value()))
+    output_instance.output(f"to set your {trait3.get_name()}, please role "
+                           f"{trait3.get_amount()} die and add "
+                           f"{trait3.get_min_value()}")
 
     input("press enter to roll...")
-    output_instance.output("your " + trait3.get_name() + " is in total: "
-                           + str(trait3.get_value()))
+    output_instance.output(f"your {trait3.get_name()} is in total: "
+                           f"{trait3.get_value()}")
 
     return trait1, trait2, trait3
 
@@ -55,11 +48,11 @@ def trait_init():
 def stats_display(trait1, trait2, trait3):
     """a function that creates a nice display of the hero's stats"""
 
-    display = ' ------------------------------\n'
-    display += '|'+trait1.get_name()+': ' + str(trait1.get_value()) + '|' + \
-        trait2.get_name()+': '+str(trait2.get_value()) + \
-        '|'+trait3.get_name()+': '+str(trait3.get_value())+'|\n'
-    display += ' ------------------------------'
+    display = (' ------------------------------\n'
+               f'|{trait1.get_name()}: {trait1.get_value()}|'
+               f'{trait2.get_name()}: {trait2.get_value()}'
+               f'|{trait3.get_name()}: {trait3.get_value()}|\n'
+               ' ------------------------------')
 
     return display
 
@@ -92,7 +85,7 @@ def roll(trait, cond):
     for _ in range(amount):
         dice_roll += random.randint(1, 6)
 
-    output = "you rolled a " + str(dice_roll)
+    output = f"you rolled a {dice_roll}"
 
     if cond == 'less':
         # lucky
@@ -114,29 +107,37 @@ def fight(skill, stamina, m_skill, m_stamina):
     # fighting function
     output_instance = TerminalOutput()
 
-    output_instance.output("your stamina "+str(stamina)+"monster stamina "
-                           + str(m_stamina))
+    output_instance.output(f"your stamina:{stamina}"
+                           f",monster stamina:{m_stamina}")
+
     temp_skill = skill + random.randint(1, 6)
-    output_instance.output("your skill is "+str(temp_skill))
+
+    output_instance.output(f"your skill is {temp_skill}")
+
     temp_m_skill = m_skill + random.randint(1, 6)
-    output_instance.output("monster skill is " + str(temp_m_skill))
+
+    output_instance.output(f"monster skill is {temp_m_skill}")
 
     if temp_skill >= temp_m_skill:
         m_stamina = m_stamina - 2
     else:
         stamina = stamina - 2
-    output_instance.output("your stamina" + str(stamina) + "monster stamina"
-                           + str(m_stamina))
+
+    output_instance.output(f"your stamina {stamina}"
+                           f",monster stamina {m_stamina}")
+
     while stamina > 0 and m_stamina > 0:
         temp_skill = skill + random.randint(1, 6)
-        output_instance.output("your skill is " + str(temp_skill))
+        output_instance.output(f"your skill is {temp_skill}")
         temp_m_skill = m_skill + random.randint(1, 6)
-        output_instance.output("monster skill is " + str(temp_m_skill))
+        output_instance.output(f"monster skill is {temp_m_skill}")
 
         if temp_skill >= temp_m_skill:
             m_stamina = m_stamina - 2
         else:
             stamina = stamina - 2
-        output_instance.output("your stamina" + str(stamina)
-                               + "monster stamina" + str(m_stamina))
+
+        output_instance.output(f"your stamina {stamina}"
+                               f",monster stamina {m_stamina}")
+
     return stamina
