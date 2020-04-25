@@ -84,4 +84,3 @@ def test_draw_when_option_doesnt_have_next_scene():
         assert example_scene.next_scene_draw("n")
     assert str(error_text.value) == "this option has no next_scene"
 
-# TODO: test if option doesn't have next_scene
