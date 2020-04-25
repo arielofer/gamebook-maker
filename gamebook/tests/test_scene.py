@@ -1,6 +1,7 @@
 from gamebook.scene import Scene
 from gamebook.nextscene import NextScene
 from gamebook.option import Option
+import pytest
 
 
 def test_show_options():
@@ -19,10 +20,12 @@ def test_show_options():
 
     # the string is very long so i cut it to multiple sections
 
-    result = "available options:\nGo left , available user_inputs: l, left ,"
-    result += " next scenes:death scene, 1.0\n\n"
-    result += "Go right , available user_inputs: r, right , "
-    result += "next scenes:death scene, 1.0\n\n"
+    result = """available options:
+Go left , available user_inputs: l, left , next scenes:death scene, 1.0
+
+Go right , available user_inputs: r, right , next scenes:death scene, 1.0
+
+"""
 
     assert scene1.show_options() == result
 
@@ -58,24 +61,27 @@ def test_draw():
 
 def test_draw_when_options_is_empty():
 
-    scene1_name = "scene1"
-
-    scene1 = Scene(scene1_name, "welcome", [])
-
-    nextscene1 = NextScene(scene1, success_rate=1.0)
-
-    example_option = Option("option no. 1",
-                            user_inputs=["n"],
-                            next_scenes=nextscene1)
-
     example_scene = Scene("exapmle scene",
                           desc="this is an example scene",
                           options=[])
 
-    result = example_scene.next_scene_draw(example_option)
-    assert result.get_scene_name == scene1_name
+    with pytest.raises(ValueError) as error_text:
+        assert example_scene.next_scene_draw("n")
+    assert str(error_text.value) == "options is empty"
 
-# TODO: test if options is empty
+
+def test_draw_when_option_doesnt_have_next_scene():
+
+    example_option = Option("option no. 1",
+                            user_inputs=["n"],
+                            next_scenes=[])
+
+    example_scene = Scene("exapmle scene",
+                          desc="this is an example scene",
+                          options=[example_option])
+
+    with pytest.raises(ValueError) as error_text:
+        assert example_scene.next_scene_draw("n")
+    assert str(error_text.value) == "this option has no next_scene"
+
 # TODO: test if option doesn't have next_scene
-
-# cant think of a good idea for this tests

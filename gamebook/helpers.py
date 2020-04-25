@@ -1,43 +1,53 @@
 import random
 import gamebook.trait
+from gamebook.terminal_output import TerminalOutput
 
 
-def openscrn(screen):
+def open_screen(screen):
     """ presents the opening screen for your game """
 
     opening_screen = screen
     return opening_screen
 
 
-def statbuild():
+def trait_init():
     """
     stats setting function:creates traits with given conduments(name, min_value
     , amount) and emulates the creation to the player(asks it to roll the dice)
     """
+
+    output_instance = TerminalOutput()
+
     trait1 = gamebook.trait.Trait("Skill", 6, 1)
     trait2 = gamebook.trait.Trait("Luck", 6, 1)
     trait3 = gamebook.trait.Trait("Stamina", 12, 2)
 
     # trait1
-    print("to set your "+trait1.get_name()+", please role " +
-          str(trait1.get_amount())+" die and add "+str(trait1.get_min_value()))
+    output_instance.output("to set your "+trait1.get_name()+", please role "
+                           + str(trait1.get_amount())+" die and add "
+                           + str(trait1.get_min_value()))
+
     input("press enter to roll...")
-    print("your " + trait1.get_name() + " is in total: "
-          + str(trait1.get_value()))
+    output_instance.output("your " + trait1.get_name() + " is in total: "
+                           + str(trait1.get_value()))
 
     # trait2
-    print("to set your "+trait2.get_name()+", please role " +
-          str(trait2.get_amount())+" die and add "+str(trait2.get_min_value()))
+    output_instance.output("to set your "+trait2.get_name()+", please role "
+                           + str(trait2.get_amount())+" die and add "
+                           + str(trait2.get_min_value()))
+
     input("press enter to roll...")
-    print("your " + trait2.get_name() + " is in total: " +
-          str(trait2.get_value()))
+    output_instance.output("your " + trait2.get_name() + " is in total: "
+                           + str(trait2.get_value()))
 
     # trait3
-    print("to set your "+trait3.get_name()+", please role " +
-          str(trait3.get_amount())+" die and add "+str(trait3.get_min_value()))
+    output_instance.output("to set your "+trait3.get_name()+", please role "
+                           + str(trait3.get_amount())+" die and add "
+                           + str(trait3.get_min_value()))
+
     input("press enter to roll...")
-    print("your " + trait3.get_name() + " is in total: "
-          + str(trait3.get_value()))
+    output_instance.output("your " + trait3.get_name() + " is in total: "
+                           + str(trait3.get_value()))
 
     return trait1, trait2, trait3
 
@@ -102,27 +112,31 @@ def roll(trait, cond):
 
 def fight(skill, stamina, m_skill, m_stamina):
     # fighting function
-    print("your stamina "+str(stamina)+"monster stamina "+str(m_stamina))
+    output_instance = TerminalOutput()
+
+    output_instance.output("your stamina "+str(stamina)+"monster stamina "
+                           + str(m_stamina))
     temp_skill = skill + random.randint(1, 6)
-    print("your skill is "+str(temp_skill))
+    output_instance.output("your skill is "+str(temp_skill))
     temp_m_skill = m_skill + random.randint(1, 6)
-    print("monster skill is " + str(temp_m_skill))
+    output_instance.output("monster skill is " + str(temp_m_skill))
 
     if temp_skill >= temp_m_skill:
         m_stamina = m_stamina - 2
     else:
         stamina = stamina - 2
-    print("your stamina" + str(stamina) + "monster stamina" + str(m_stamina))
+    output_instance.output("your stamina" + str(stamina) + "monster stamina"
+                           + str(m_stamina))
     while stamina > 0 and m_stamina > 0:
         temp_skill = skill + random.randint(1, 6)
-        print("your skill is " + str(temp_skill))
+        output_instance.output("your skill is " + str(temp_skill))
         temp_m_skill = m_skill + random.randint(1, 6)
-        print("monster skill is " + str(temp_m_skill))
+        output_instance.output("monster skill is " + str(temp_m_skill))
 
         if temp_skill >= temp_m_skill:
             m_stamina = m_stamina - 2
         else:
             stamina = stamina - 2
-        print("your stamina" + str(stamina) +
-              "monster stamina" + str(m_stamina))
+        output_instance.output("your stamina" + str(stamina)
+                               + "monster stamina" + str(m_stamina))
     return stamina

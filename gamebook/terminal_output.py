@@ -1,4 +1,5 @@
 from gamebook.output import Output
+import os
 
 
 class TerminalOutput(Output):
@@ -6,4 +7,7 @@ class TerminalOutput(Output):
         if content:
             print(content)
         else:
-            print("no content recieved")
+            raise ValueError("no content recieved")
+
+    def clear(self):
+        os.system("cls")

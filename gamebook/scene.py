@@ -57,10 +57,13 @@ class Scene(object):
         if not option:
             raise Exception("this option does not exist in this scene")
 
-        if type(option.next_scenes) == list:
-            weights = [i.get_success_rate() for i in option.next_scenes]
+        if option.next_scenes:
+            if type(option.next_scenes) == list:
+                weights = [i.get_success_rate() for i in option.next_scenes]
+            else:
+                return option.next_scenes
         else:
-            return option.next_scenes
+            raise ValueError("this option has no next_scene")
 
         draw = random.choices(option.next_scenes, weights, k=1)
         return draw[0]
