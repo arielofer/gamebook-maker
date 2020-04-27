@@ -1,7 +1,8 @@
 from gamebook.trait import Trait
-from gamebook.helpers import statsdsply
+from gamebook.helpers import stats_display
 
-def test_statsdsply():
+
+def test_stats_display():
 
     display_data = ' ------------------------------\n'
     display_data += '|health: 6|luck: 2|strength: 1|\n'
@@ -10,5 +11,5 @@ def test_statsdsply():
     trait1 = Trait("health", 6)
     trait2 = Trait("luck", 2)
     trait3 = Trait("strength", 1)
-    display = statsdsply(trait1, trait2, trait3)
+    display = stats_display(trait1, trait2, trait3)
     assert display_data == display

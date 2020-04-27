@@ -7,8 +7,7 @@ class NextScene(object):
         return self.next_scene
 
     def get_scene_name(self):
-        return self.next_scene.get_name() 
+        return self.next_scene.get_name()
 
     def get_success_rate(self):
         return self.success_rate
-
