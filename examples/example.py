@@ -18,7 +18,7 @@ def main():
 
     output_instance.output(opening_screen)
 
-    input_instance.recieve_input("press enter to start your quest...")
+    input_instance.input("press enter to start your quest...")
     output_instance.clear()
     # stats
     SKILL, LUCK, STAMINA = helpers.trait_init()
@@ -35,13 +35,13 @@ def main():
         output_instance.output("Your quest lies ahead of you.\nAcross the clearing is a dark cave entrance.\nYou pick up your sword, get to your feet and consider what dangers may lie ahead of you.\nBut with determination, you thrust the sword home into its scabbard and approach the cave.")
         output_instance.output("You peer into the gloom to see dark, slimy walls with pools of water on the stone floor in front of you.\nThe air is cold and dank.\nYou light your lantern and step warily into the blackness.\nCobwebs brush your face and you hear the scurrying of tiny feet: rats, most likely.\nYou set off into the cave.\nAfter a few yards you arrive at a junction.")
         output_instance.output("Will you turn " + Bstart + "west" + Bstop + " or" + Bstart + " east?" + Bstop)
-        choice = input_instance.recieve_input("your choice: ")
+        choice = input_instance.input("your choice: ")
 
         if choice == 'east' or choice == 'west':
             valid_choice_check = True
         else:
             output_instance.output(" ")
-            input_instance.recieve_input("this is an invalid choice. please press enter to try again...")
+            input_instance.input("this is an invalid choice. please press enter to try again...")
             output_instance.clear()
 
     if choice == 'east':
@@ -55,13 +55,13 @@ def main():
 
             output_instance.output("The passageway soon comes to an end at a locked wooden door.\nYou listen at the door but hear nothing.")
             output_instance.output("Will you try to" + Bstart + " charge" + Bstop + " the door down or would you rather" + Bstart + " turn around" + Bstop + " and go back to the junction?")
-            choice = input_instance.recieve_input("your choice: ")
+            choice = input_instance.input("your choice: ")
 
             if choice == "charge" or choice == "turn around":
                 valid_choice_check = True
             else:
                 output_instance.output(" ")
-                input_instance.recieve_input("this is an invalid choice. please press enter to try again...")
+                input_instance.input("this is an invalid choice. please press enter to try again...")
                 output_instance.clear()
 
         if choice == 'charge':
@@ -81,7 +81,7 @@ def main():
                 output_instance.output(helpers.stats_display(SKILL, LUCK, STAMINA))
 
                 output_instance.output("The door bursts open and you fall headlong into a room.\nBut your heart jumps as you realize you are not landing on the floor, but plunging down a pit of some kind!\nLuckily the pit is not particularly deep and you land in a heap less than two metres down.\nLose 1 stamina point for your bruises, climb out of the pit into the room and leave through the door, heading westwards.")
-                input_instance.recieve_input("press enter to continue...")
+                input_instance.input("press enter to continue...")
                 STAMINA.set_value(STAMINA.get_value()-1)
             else:
 
@@ -91,7 +91,7 @@ def main():
                 output_instance.output(helpers.stats_display(SKILL, LUCK, STAMINA))
 
                 output_instance.output("you rub your bruised shoulder and decide against trying again and go back to the junction.")
-                input_instance.recieve_input("press enter to continue...")
+                input_instance.input("press enter to continue...")
 
         # scene no. 92
 
@@ -99,7 +99,7 @@ def main():
         output_instance.output(helpers.stats_display(SKILL, LUCK, STAMINA))
 
         output_instance.output("You arrive back at the junction in the passage.\nYou look left to see the cave entrance in the dim distance but walk straight on.")
-        input_instance.recieve_input("press enter to continue...")
+        input_instance.input("press enter to continue...")
 
     # scene no. 71
 
@@ -107,7 +107,7 @@ def main():
     output_instance.output(helpers.stats_display(SKILL, LUCK, STAMINA))
 
     output_instance.output("There is a right-hand turn to the north in the passage.\nCautiously you approach a sentry post on the corner and, as you look in, you can see a strange Goblin-like creature in leather armour asleep at his post.\nYou try to tiptoe past him.\nTest your Luck. If you are Lucky, he does not wake up and remains snoring loudly. If you are Unlucky, you step with a crunch on some loose ground and his eyes flick open.")
-    input_instance.recieve_input("press enter to continue...")
+    input_instance.input("press enter to continue...")
     ok = helpers.roll(LUCK, 'less')
     LUCK.set_value(LUCK.get_value()-1)
 
@@ -117,20 +117,20 @@ def main():
         output_instance.clear()
         output_instance.output(helpers.stats_display(SKILL, LUCK, STAMINA))
         output_instance.output("The creature that has just awakened is an ORC! He scrambles to his feet and turns to grasp at a rope which is probably the alarm bell. You must attack him quickly.\nORC SKILL 6 STAMINA 5")
-        input_instance.recieve_input("press enter to start the fight sequence...")
+        input_instance.input("press enter to start the fight sequence...")
         # fight
         STAMINA.set_value(helpers.fight(SKILL.get_value(), STAMINA.get_value(), 6, 5))
         if STAMINA.get_value() <= 0:
             output_instance.output("you died")
             sys.exit()
-        input_instance.recieve_input("you are victorious. press enter to continue...")
+        input_instance.input("you are victorious. press enter to continue...")
 
     # lucky
     else:
         output_instance.clear()
         output_instance.output(helpers.stats_display(SKILL, LUCK, STAMINA))
         output_instance.output("the creature does not wake up and remains snoring loudly. you walk past him.")
-        input_instance.recieve_input("press enter to continue...")
+        input_instance.input("press enter to continue...")
 
     # scene no. 301
 
@@ -139,13 +139,13 @@ def main():
         output_instance.clear()
         output_instance.output(helpers.stats_display(SKILL, LUCK, STAMINA))
         output_instance.output("To your left, on the west face of the passage, there is a rough-cut wooden door.\nYou listen at the door and can hear a rasping sound which may be some sort of creature snoring.\nDo you want to "+Bstart+"open"+Bstop+" the door or do you wish to "+Bstart+"press on"+Bstop+" northwards?")
-        choice = input_instance.recieve_input("your choice: ")
+        choice = input_instance.input("your choice: ")
 
         if choice == "open" or choice == "press on":
             valid_choice_check = True
         else:
             output_instance.output(" ")
-            input_instance.recieve_input("this is an invalid choice. please press enter to try again...")
+            input_instance.input("this is an invalid choice. please press enter to try again...")
             output_instance.clear()
 
     if choice == "open":
@@ -156,13 +156,13 @@ def main():
             output_instance.output(helpers.stats_display(SKILL, LUCK, STAMINA))
             output_instance.output("The door opens to reveal a small, smelly room.\nIn the centre of the room is a rickety wooden table on which stands a lit candle.\nUnderneath the table is a small wooden box.\nAsleep on a straw mattress in the far corner of the room is a short, stocky creature with an ugly, warty face; the same sort of creature that you found asleep at the sentry post.")
             output_instance.output("He must be the guard for the night watch.\nYou may either "+Bstart+"return"+Bstop+" to the corridor and press on northwards or creep into the room and try to "+Bstart+"steal"+Bstop+" the box without waking the creature.\nIf you want to try to steal the box, Test your Luck. If you are Lucky, he does not wake up.")
-            choice = input_instance.recieve_input("your choice: ")
+            choice = input_instance.input("your choice: ")
 
             if choice == "return" or choice == "steal":
                 valid_choice_check = True
             else:
                 output_instance.output(" ")
-                input_instance.recieve_input("this is an invalid choice. please press enter to try again...")
+                input_instance.input("this is an invalid choice. please press enter to try again...")
                 output_instance.clear()
 
         if choice == "steal":
@@ -177,7 +177,7 @@ def main():
                     output_instance.output("The sleeping creature awakens startled.\nHe jumps up and rushes at you, unarmed.\nWith your sword you should be able to defeat him, but his sharp teeth look rather vicious.\nYou may "+Bstart+"Escape"+Bstop+" through the door or stand and "+Bstart+"fight"+Bstop+" the ORC who is attacking you.")
                     output_instance.output("If you defeat the creature, you may take the box.")
                     output_instance.output("ORC SKILL 6 STAMINA 4")
-                    choice = input_instance.recieve_input("your choice: ")
+                    choice = input_instance.input("your choice: ")
                 if choice == "fight":
                     STAMINA.set_value(helpers.fight(SKILL.get_value(), STAMINA.get_value(), 6, 4))
                     # defeat
@@ -186,7 +186,7 @@ def main():
                         sys.exit()
                     # victory
                     output_instance.output("you are victorious, you may take the box")
-                    input_instance.recieve_input("press enter to continue...")
+                    input_instance.input("press enter to continue...")
 
                 # scene no. 147
 

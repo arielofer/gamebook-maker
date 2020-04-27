@@ -1,4 +1,7 @@
 class Input(object):
 
-    def recieve_input(self):
+    def input(self):
+        raise NotImplementedError
+
+    def ask_for_user_inputs(self, option):
         raise NotImplementedError
