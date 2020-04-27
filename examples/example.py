@@ -14,7 +14,6 @@ def main():
     opening_screen = r"          /\\\n         /**\\\n        /****\   /\\\n       /      \ /**\\\n      /  /\    /    \ \n     /  /  \  /      \\\n    /  /    \/ /\     \\\n   /  /  _   \/  \/\   \\\n__/__/__( )__/___/__\___\_"
     opening_screen += '\nwelcome to the text adventure: "the warlock of firetop mountain"'
 
-    # print(helpers.open_screen(opening_screen))
     output_instance.output(opening_screen)
 
     input("press enter to start your quest...")

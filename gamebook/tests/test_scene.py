@@ -83,4 +83,3 @@ def test_draw_when_option_doesnt_have_next_scene():
     with pytest.raises(ValueError) as error_text:
         assert example_scene.next_scene_draw("n")
     assert str(error_text.value) == "this option has no next_scene"
-
