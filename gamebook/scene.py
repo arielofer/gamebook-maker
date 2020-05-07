@@ -66,7 +66,8 @@ class Scene(object):
         option = self.get_option_by_user_input(option_user_key)
 
         if not option:
-            raise Exception("this option does not exist in this scene")
+            raise Exception("the user input_recieved",
+                            " does not match any option")
 
         if option.next_scenes:
             if not isinstance(option.next_scenes, list) or\
