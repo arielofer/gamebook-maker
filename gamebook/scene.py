@@ -1,5 +1,4 @@
 import random
-from gamebook.option import Option
 
 
 class Scene(object):
@@ -70,8 +69,7 @@ class Scene(object):
                             " does not match any option")
 
         if option.next_scenes:
-            if not isinstance(option.next_scenes, list) or\
-                 len(option.next_scenes) == 1:
+            if not isinstance(option.next_scenes, list):
                 return option.next_scenes
             weights = [i.get_success_rate() for i in option.next_scenes]
         else:
