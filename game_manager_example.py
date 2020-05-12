@@ -72,8 +72,8 @@ scene_list = [intro_scene, next_scene1, next_scene2, dead_scene, lucky_scene,
 
 
 def main():
-    gm = GameManager(intro_scene)
-    gm.start(scene_list)
+    gm = GameManager(intro_scene, scene_list)
+    gm.start()
 
 
 if __name__ == "__main__":
