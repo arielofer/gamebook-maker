@@ -1,7 +1,10 @@
 class Output(object):
 
     def output(self, content):
-        return NotImplementedError
+        raise NotImplementedError
 
     def clear(self):
-        return NotImplementedError
+        raise NotImplementedError
+
+    def exit(self):
+        raise NotImplementedError
