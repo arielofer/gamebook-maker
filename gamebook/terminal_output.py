@@ -1,5 +1,6 @@
 from gamebook.output import Output
 import os
+import sys
 
 
 class TerminalOutput(Output):
@@ -11,3 +12,7 @@ class TerminalOutput(Output):
 
     def clear(self):
         os.system("cls")
+
+    def exit(self, exit_reason):
+        self.output(exit_reason)
+        sys.exit()

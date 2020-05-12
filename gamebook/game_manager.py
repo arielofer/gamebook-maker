@@ -1,32 +1,32 @@
 from gamebook.terminal_output import TerminalOutput
 from gamebook.terminal_input import TerminalInput
-import sys
 from gamebook.scene import Scene
 
 
 class GameManager(object):
-    def __init__(self, current_scene, scene_import):
+    def __init__(self, scenes_import):
         """
             takes care of presenting the scenes to the user and moving
             from one scene to next fluently
 
-            current_scene: the current scene the player is in at the moment
-            when initializing a GameManager, insert the first scene.
-
-            scene_import: a list of all the sceness
+            scenes_import: a list of all the sceness
         """
-        self.current_scene = current_scene  # insert the first scene here
-        self.scene_import = scene_import
+        self.scenes_import = scenes_import
         self.output_instance = TerminalOutput()
         self.input_instance = TerminalInput()
 
-    def start(self):
+    def start(self, current_scene):
+        """
+            current_scene: the current scene the player is in at the moment.
+            insert the first scene for your game.
+        """
+        self.current_scene = current_scene
         while True:
             next_scene_name = self.run_scene()
             self.current_scene = self.get_next_scene(next_scene_name)
 
     def get_next_scene(self, scene_name):
-        for scene in self.scene_import:
+        for scene in self.scenes_import:
             if scene.get_name() == scene_name:
                 return scene
 
@@ -38,7 +38,7 @@ class GameManager(object):
 
         if len(self.current_scene.options) == 0:
             # if the current scene has no options, the game ends
-            sys.exit()
+            self.output_instance.exit("you reached the end - game over")
 
         user_input = self.input_instance.\
             ask_for_user_inputs(self.current_scene.options)
