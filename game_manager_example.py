@@ -68,7 +68,7 @@ intro_scene = Scene(
         )
 
 scenes_list = [intro_scene, next_scene1, next_scene2, dead_scene, lucky_scene,
-              flee_scene]
+               flee_scene]
 
 
 def main():
