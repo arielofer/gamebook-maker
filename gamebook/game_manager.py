@@ -1,10 +1,8 @@
-from gamebook.terminal_output import TerminalOutput
-from gamebook.terminal_input import TerminalInput
 from gamebook.scene import Scene
 
 
 class GameManager(object):
-    def __init__(self, scenes_import):
+    def __init__(self, scenes_import, output_instance, input_instance):
         """
             takes care of presenting the scenes to the user and moving
             from one scene to next fluently
@@ -12,8 +10,8 @@ class GameManager(object):
             scenes_import: a list of all the sceness
         """
         self.scenes_import = scenes_import
-        self.output_instance = TerminalOutput()
-        self.input_instance = TerminalInput()
+        self.output_instance = output_instance
+        self.input_instance = input_instance
 
     def start(self, current_scene):
         """
@@ -23,6 +21,8 @@ class GameManager(object):
         self.current_scene = current_scene
         while True:
             next_scene_name = self.run_scene()
+            if next_scene_name == "":
+                break
             self.current_scene = self.get_next_scene(next_scene_name)
 
     def get_next_scene(self, scene_name):
@@ -39,9 +39,14 @@ class GameManager(object):
         if len(self.current_scene.options) == 0:
             # if the current scene has no options, the game ends
             self.output_instance.exit("you reached the end - game over")
+            return ""
 
         user_input = self.input_instance.\
             ask_for_user_inputs(self.current_scene.options)
+
+        if user_input == "quit":
+            self.output_instance.exit("exiting...")
+            return ""
 
         while True:
             try:
