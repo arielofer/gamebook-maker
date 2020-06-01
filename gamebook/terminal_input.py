@@ -10,7 +10,7 @@ class TerminalInput(Input):
         return data
 
     def ask_for_user_inputs(self, options):
-        user_input_string = ""
+        user_input_string = "\n"
         for option in options:
             user_input_string += (f"to {option.show_title()} enter one of the"
                                   f" following {option.show_user_inputs()}\n")
