@@ -64,4 +64,4 @@ class GameManager(object):
 
             except OptionNotFoundError:
                 self.output_instance.output(invalid_user_input_message)
-                user_input = self.input_instance.input("your choice: ")
+                user_input = self.input_instance.input(input_prompt)

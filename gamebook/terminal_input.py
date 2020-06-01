@@ -1,5 +1,5 @@
 from gamebook.game_input import Input
-from gamebook.important_strings import exit_user_input
+from gamebook.important_strings import exit_user_input_request, input_prompt
 
 
 class TerminalInput(Input):
@@ -14,7 +14,7 @@ class TerminalInput(Input):
         for option in options:
             user_input_string += (f"to {option.show_title()} enter one of the"
                                   f" following {option.show_user_inputs()}\n")
-        user_input_string += f"to exit the game enter: {exit_user_input}\n\n"
-        user_input = input(user_input_string + "your choice:")
+        user_input_string += f"{exit_user_input_request}\n\n"
+        user_input = input(user_input_string + input_prompt)
 
         return user_input
