@@ -1,4 +1,6 @@
 from gamebook.scene import Scene
+from gamebook.exceptions import *
+from gamebook.important_strings import *
 
 
 class GameManager(object):
@@ -20,10 +22,16 @@ class GameManager(object):
         """
         self.current_scene = current_scene
         while True:
-            next_scene_name = self.run_scene()
-            if next_scene_name == "":
+            try:
+                next_scene_name = self.run_scene()
+                self.current_scene = self.get_next_scene(next_scene_name)
+
+            except ReachedTheEndError:
+                self.output_instance.exit(end_message)
                 break
-            self.current_scene = self.get_next_scene(next_scene_name)
+
+            except ExitRequested:
+                self.output_instance.exit(exit_message)
 
     def get_next_scene(self, scene_name):
         for scene in self.scenes_import:
@@ -38,15 +46,14 @@ class GameManager(object):
 
         if len(self.current_scene.options) == 0:
             # if the current scene has no options, the game ends
-            self.output_instance.exit("you reached the end - game over")
-            return ""
+            raise ReachedTheEndError
 
         user_input = self.input_instance.\
             ask_for_user_inputs(self.current_scene.options)
 
-        if user_input == "quit":
-            self.output_instance.exit("exiting...")
-            return ""
+        if user_input == exit_user_input:
+            # the user wants to quit the game
+            raise ExitRequested
 
         while True:
             try:
@@ -55,7 +62,6 @@ class GameManager(object):
                     return next_scene
                 return next_scene.get_scene_name()
 
-            except ValueError:
-                error_string = "this is an invalid choice. please try again"
-                self.output_instance.output(error_string)
+            except OptionNotFoundError:
+                self.output_instance.output(invalid_user_input_message)
                 user_input = self.input_instance.input("your choice: ")
