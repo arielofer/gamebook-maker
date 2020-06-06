@@ -1,6 +1,6 @@
 from gamebook.scene import Scene
 from gamebook.exceptions import *
-from gamebook.important_strings import *
+import gamebook.important_strings
 
 
 class GameManager(object):
@@ -27,11 +27,14 @@ class GameManager(object):
                 self.current_scene = self.get_next_scene(next_scene_name)
 
             except ReachedTheEndError:
-                self.output_instance.exit(end_message)
+                self.output_instance.exit(gamebook.important_strings.
+                                          end_message)
                 break
 
             except ExitRequested:
-                self.output_instance.exit(exit_message)
+                self.output_instance.exit(gamebook.important_strings.
+                                          exit_message)
+                break
 
     def get_next_scene(self, scene_name):
         for scene in self.scenes_import:
@@ -51,7 +54,7 @@ class GameManager(object):
         user_input = self.input_instance.\
             ask_for_user_inputs(self.current_scene.options)
 
-        if user_input == exit_user_input:
+        if user_input == gamebook.important_strings.exit_user_input:
             # the user wants to quit the game
             raise ExitRequested
 
@@ -63,5 +66,9 @@ class GameManager(object):
                 return next_scene.get_scene_name()
 
             except OptionNotFoundError:
-                self.output_instance.output(invalid_user_input_message)
-                user_input = self.input_instance.input(input_prompt)
+                self.output_instance.output(gamebook.important_strings.
+                                            invalid_user_input_message)
+
+                user_input = self.input_instance.input(gamebook.
+                                                       important_strings.
+                                                       input_prompt)

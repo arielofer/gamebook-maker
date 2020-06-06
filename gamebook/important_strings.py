@@ -23,3 +23,7 @@ invalid_user_input_message = "this is an invalid choice. please try again"
 
 # a message requesting the player for user_input, goes before the input
 input_prompt = "your choice: "
+
+# a string used in input.ask_for_user_inputs to present the user_inputs
+user_inputs_request_format = """to {option_title} enter one of the
+ following {option_user_inputs}\n"""
