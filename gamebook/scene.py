@@ -1,4 +1,5 @@
 import random
+from gamebook.exceptions import OptionNotFoundError
 
 
 class Scene(object):
@@ -50,7 +51,7 @@ class Scene(object):
             if user_input_recieved in option.user_inputs:
                 return option
 
-        raise ValueError("no option with this user_input found")
+        raise OptionNotFoundError
 
     def next_scene_draw(self, option_user_key):
         """
@@ -63,10 +64,6 @@ class Scene(object):
             raise ValueError("options is empty")
 
         option = self.get_option_by_user_input(option_user_key)
-
-        if not option:
-            raise Exception("the user input_recieved",
-                            " does not match any option")
 
         if option.next_scenes:
             if not isinstance(option.next_scenes, list):

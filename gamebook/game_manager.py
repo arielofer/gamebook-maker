@@ -1,10 +1,10 @@
-from gamebook.terminal_output import TerminalOutput
-from gamebook.terminal_input import TerminalInput
 from gamebook.scene import Scene
+from gamebook.exceptions import *
+import gamebook.important_strings
 
 
 class GameManager(object):
-    def __init__(self, scenes_import):
+    def __init__(self, scenes_import, output_instance, input_instance):
         """
             takes care of presenting the scenes to the user and moving
             from one scene to next fluently
@@ -12,8 +12,8 @@ class GameManager(object):
             scenes_import: a list of all the sceness
         """
         self.scenes_import = scenes_import
-        self.output_instance = TerminalOutput()
-        self.input_instance = TerminalInput()
+        self.output_instance = output_instance
+        self.input_instance = input_instance
 
     def start(self, current_scene):
         """
@@ -22,8 +22,19 @@ class GameManager(object):
         """
         self.current_scene = current_scene
         while True:
-            next_scene_name = self.run_scene()
-            self.current_scene = self.get_next_scene(next_scene_name)
+            try:
+                next_scene_name = self.run_scene()
+                self.current_scene = self.get_next_scene(next_scene_name)
+
+            except ReachedTheEndException:
+                self.output_instance.exit(gamebook.important_strings.
+                                          end_message)
+                break
+
+            except ExitRequested:
+                self.output_instance.exit(gamebook.important_strings.
+                                          exit_message)
+                break
 
     def get_next_scene(self, scene_name):
         for scene in self.scenes_import:
@@ -38,10 +49,14 @@ class GameManager(object):
 
         if len(self.current_scene.options) == 0:
             # if the current scene has no options, the game ends
-            self.output_instance.exit("you reached the end - game over")
+            raise ReachedTheEndException
 
         user_input = self.input_instance.\
             ask_for_user_inputs(self.current_scene.options)
+
+        if user_input == gamebook.important_strings.exit_user_input:
+            # the user wants to quit the game
+            raise ExitRequested
 
         while True:
             try:
@@ -50,7 +65,10 @@ class GameManager(object):
                     return next_scene
                 return next_scene.get_scene_name()
 
-            except ValueError:
-                error_string = "this is an invalid choice. please try again"
-                self.output_instance.output(error_string)
-                user_input = self.input_instance.input("your choice: ")
+            except OptionNotFoundError:
+                self.output_instance.output(gamebook.important_strings.
+                                            invalid_user_input_message)
+
+                user_input = self.input_instance.input(gamebook.
+                                                       important_strings.
+                                                       input_prompt)

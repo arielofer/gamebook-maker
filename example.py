@@ -2,6 +2,8 @@ from gamebook.scene import Scene
 from gamebook.option import Option
 from gamebook.nextscene import NextScene
 from gamebook.game_manager import GameManager
+from gamebook.terminal_input import TerminalInput
+from gamebook.terminal_output import TerminalOutput
 
 
 flee_scene = Scene(
@@ -72,7 +74,10 @@ scenes_list = [intro_scene, next_scene1, next_scene2, dead_scene, lucky_scene,
 
 
 def main():
-    gm = GameManager(scenes_list)
+    output_instance = TerminalOutput()
+    input_instance = TerminalInput()
+
+    gm = GameManager(scenes_list, output_instance, input_instance)
     gm.start(intro_scene)
 
 

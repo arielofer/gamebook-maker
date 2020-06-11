@@ -1,4 +1,6 @@
 from gamebook.game_input import Input
+from gamebook.important_strings import exit_user_input_request, input_prompt
+from gamebook.important_strings import user_inputs_request_format
 
 
 class TerminalInput(Input):
@@ -9,10 +11,13 @@ class TerminalInput(Input):
         return data
 
     def ask_for_user_inputs(self, options):
-        user_input_string = ""
+        user_inputs_string = "\n"
         for option in options:
-            user_input_string += (f"to {option.show_title()} enter one of the"
-                                  f" following {option.show_user_inputs()}\n")
-        user_input = input(user_input_string + "your choice:")
+            user_inputs_string += user_inputs_request_format.format(
+                option_title=option.show_title(),
+                option_user_inputs=option.show_user_inputs())
+
+        user_inputs_string += f"{exit_user_input_request}\n\n"
+        user_input = input(user_inputs_string + input_prompt)
 
         return user_input
