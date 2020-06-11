@@ -1,4 +1,4 @@
-class ReachedTheEndError(Exception):
+class ReachedTheEndException(Exception):
     """
     the end of the current plot line has been reached.
     the current scene has no 'options'

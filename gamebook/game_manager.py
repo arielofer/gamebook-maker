@@ -26,7 +26,7 @@ class GameManager(object):
                 next_scene_name = self.run_scene()
                 self.current_scene = self.get_next_scene(next_scene_name)
 
-            except ReachedTheEndError:
+            except ReachedTheEndException:
                 self.output_instance.exit(gamebook.important_strings.
                                           end_message)
                 break
@@ -49,7 +49,7 @@ class GameManager(object):
 
         if len(self.current_scene.options) == 0:
             # if the current scene has no options, the game ends
-            raise ReachedTheEndError
+            raise ReachedTheEndException
 
         user_input = self.input_instance.\
             ask_for_user_inputs(self.current_scene.options)
