@@ -9,6 +9,7 @@ class Monster(Creature):
         self.is_alive = True
 
     def attack(self, trait_name):
+        """returns the attack power for the current fight sequence"""
         for trait in self.traits:
             if trait_name == trait.get_name():
                 attack_trait = trait
@@ -16,6 +17,7 @@ class Monster(Creature):
         return attack_trait.get_value() + random.randint(1, 6)
 
     def defend(self, trait_name, damage):
+        """apllies damage if the monster lost the current fight sequence"""
         for trait in self.traits:
             if trait_name == trait.get_name():
                 defence_trait = trait
