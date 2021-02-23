@@ -3,7 +3,7 @@ from gamebook.creature import Creature
 
 class Hero(Creature):
     def __init__(self, traits):
-        self.traits = traits
+        super().__init__(traits)
         self.is_alive = True
 
     def fight(self, attack_t_name, defence_t_name, monster):
