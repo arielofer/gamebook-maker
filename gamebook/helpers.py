@@ -1,6 +1,7 @@
 import random
 import gamebook.trait
 from gamebook.terminal_output import TerminalOutput
+import gamebook.important_strings
 
 
 def trait_init():
@@ -11,9 +12,12 @@ def trait_init():
 
     output_instance = TerminalOutput()
 
-    trait1 = gamebook.trait.Trait("Skill", 6, 1)
-    trait2 = gamebook.trait.Trait("Luck", 6, 1)
-    trait3 = gamebook.trait.Trait("Stamina", 12, 2)
+    trait1 = gamebook.trait.Trait(gamebook.important_strings.power_trait_name,
+                                  6, 1)
+    trait2 = gamebook.trait.Trait(gamebook.important_strings.luck_trait_name,
+                                  6, 1)
+    trait3 = gamebook.trait.Trait(gamebook.important_strings.health_trait_name,
+                                  12, 2)
 
     # trait1
     output_instance.output(f"to set your {trait1.get_name()}, please role "
