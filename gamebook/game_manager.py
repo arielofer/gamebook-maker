@@ -1,5 +1,5 @@
 import gamebook.exceptions
-import gamebook.important_strings
+import gamebook.constants
 from gamebook.hero import Hero
 from gamebook.helpers import trait_init
 from gamebook.fight_scene import FightScene
@@ -18,8 +18,8 @@ class GameManager(object):
         self.output_instance = output_instance
         self.input_instance = input_instance
 
-        trait1, trait2, trait3 = trait_init()
-        self.hero = Hero(traits=[trait1, trait2, trait3])
+        power_trait, luck_trait, health_trait = trait_init()
+        self.hero = Hero(traits=[power_trait, luck_trait, health_trait])
 
     def start(self, current_scene):
         """
@@ -33,24 +33,24 @@ class GameManager(object):
                 self.current_scene = self.get_next_scene(next_scene_name)
 
             except gamebook.exceptions.ReachedTheEndException:
-                self.output_instance.exit(gamebook.important_strings.
+                self.output_instance.exit(gamebook.constants.
                                           end_message)
                 break
 
             except gamebook.exceptions.ExitRequested:
-                self.output_instance.exit(gamebook.important_strings.
+                self.output_instance.exit(gamebook.constants.
                                           exit_message)
                 break
 
             except gamebook.exceptions.TraitNotFoundError as T:
-                self.output_instance.output(gamebook.important_strings.
+                self.output_instance.output(gamebook.constants.
                                             invalid_trait_name.format(
                                                 trait_name=T.trait_name
                                             ))
                 break
 
             except gamebook.exceptions.NextSceneTypeError:
-                self.output_instance.output(gamebook.important_strings.
+                self.output_instance.output(gamebook.constants.
                                             invalid_next_scene_value)
                 break
 
@@ -80,7 +80,7 @@ class GameManager(object):
         user_input = self.input_instance.\
             ask_for_user_inputs(self.current_scene.options)
 
-        if user_input == gamebook.important_strings.exit_user_input:
+        if user_input == gamebook.constants.exit_user_input:
             # the user wants to quit the game
             raise gamebook.exceptions.ExitRequested
 
@@ -94,9 +94,9 @@ class GameManager(object):
                 return next_scene.get_scene_name()
 
             except gamebook.exceptions.OptionNotFoundError:
-                self.output_instance.output(gamebook.important_strings.
+                self.output_instance.output(gamebook.constants.
                                             invalid_user_input_message)
 
                 user_input = self.input_instance.input(gamebook.
-                                                       important_strings.
+                                                       constants.
                                                        input_prompt)

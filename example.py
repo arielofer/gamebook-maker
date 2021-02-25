@@ -7,7 +7,7 @@ from gamebook.nextscene import NextScene
 from gamebook.terminal_input import TerminalInput
 from gamebook.terminal_output import TerminalOutput
 from gamebook.game_manager import GameManager
-import gamebook.important_strings
+import gamebook.constants
 
 flee_scene = Scene(
             name="fleeing scene",
@@ -27,9 +27,9 @@ dead_scene = Scene(
             options=[]
         )
 
-monster_skill = Trait(name=gamebook.important_strings.power_trait_name,
+monster_skill = Trait(name=gamebook.constants.power_trait_name,
                       min_value=1, amount=1)
-monster_stamina = Trait(name=gamebook.important_strings.health_trait_name,
+monster_stamina = Trait(name=gamebook.constants.health_trait_name,
                         min_value=6, amount=2)
 
 imp = Monster(name="imp", traits=[monster_skill, monster_stamina])
