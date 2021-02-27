@@ -1,5 +1,4 @@
 from gamebook.scene import Scene
-import gamebook.important_strings
 
 
 class FightScene(Scene):
@@ -29,17 +28,10 @@ class FightScene(Scene):
     def show_options(self):
         return super().show_options()
 
-    def show_monster(self):
-        data_string = ""
-        data_string += self.enemy.name + "\n"
-        for trait in self.enemy.traits:
-            data_string + f"trait name: {trait.name}, value: {trait.value}\n"
-
-        return data_string
+    def get_monster(self):
+        return self.enemy
 
     def run_fight(self, hero):
-        if hero.fight(gamebook.important_strings.power_trait_name,
-                      gamebook.important_strings.health_trait_name,
-                      self.enemy):
+        if hero.fight(self.enemy):
             return self.next_scenes["win"]
         return self.next_scenes["loss"]

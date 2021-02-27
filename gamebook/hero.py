@@ -3,23 +3,18 @@ from gamebook.creature import Creature
 
 class Hero(Creature):
     def __init__(self, traits):
-        super().__init__(traits)
+        self.traits = {"attack": traits[0],
+                       "luck": traits[1],
+                       "health": traits[2]}
         self.is_alive = True
 
-    def fight(self, attack_t_name, defence_t_name, monster):
-        """
-            attack_t_name: the name of the trait that is used as the creature's
-            power
-
-            defence_t_name: the name of the trait that is used as the
-            creature's health
-        """
-
+    def fight(self, monster):
         while self.is_alive and monster.is_alive:
-            if self.attack(attack_t_name) >= monster.attack(attack_t_name):
-                monster.defend(defence_t_name, 2)
+            if self.attack(self.traits["attack"]) >=\
+               monster.attack(monster.traits["attack"]):
+                monster.defend(monster.traits["health"], 2)
             else:
-                self.defend(defence_t_name, 2)
+                self.defend(self.traits["health"], 2)
 
         if self.is_alive:
             return True  # the hero won
