@@ -1,6 +1,7 @@
 import random
-import gamebook.trait
+from gamebook.trait import Trait
 from gamebook.terminal_output import TerminalOutput
+import gamebook.constants
 
 
 def trait_init():
@@ -11,38 +12,38 @@ def trait_init():
 
     output_instance = TerminalOutput()
 
-    trait1 = gamebook.trait.Trait("Skill", 6, 1)
-    trait2 = gamebook.trait.Trait("Luck", 6, 1)
-    trait3 = gamebook.trait.Trait("Stamina", 12, 2)
+    power_trait = Trait(gamebook.constants.power_trait_name, 6, 1)
+    luck_trait = Trait(gamebook.constants.luck_trait_name, 6, 1)
+    health_trait = Trait(gamebook.constants.health_trait_name, 12, 2)
 
-    # trait1
-    output_instance.output(f"to set your {trait1.get_name()}, please role "
-                           f"{trait1.get_amount()} die and add "
-                           f"{trait1.get_min_value()}")
-
-    input("press enter to roll...")
-    output_instance.output(f"your {trait1.get_name()} is in total: "
-                           f"{trait1.get_value()}")
-
-    # trait2
-    output_instance.output(f"to set your {trait2.get_name()}, please role "
-                           f"{trait2.get_amount()} die and add "
-                           f"{trait2.get_min_value()}")
+    # power_trait
+    output_instance.output(f"to set your {power_trait.get_name()}, please "
+                           f"role {power_trait.get_amount()} die and add "
+                           f"{power_trait.get_min_value()}")
 
     input("press enter to roll...")
-    output_instance.output(f"your {trait2.get_name()} is in total: "
-                           f"{trait2.get_value()}")
+    output_instance.output(f"your {power_trait.get_name()} is in total: "
+                           f"{power_trait.get_value()}")
 
-    # trait3
-    output_instance.output(f"to set your {trait3.get_name()}, please role "
-                           f"{trait3.get_amount()} die and add "
-                           f"{trait3.get_min_value()}")
+    # luck_trait
+    output_instance.output(f"to set your {luck_trait.get_name()}, please role "
+                           f"{luck_trait.get_amount()} die and add "
+                           f"{luck_trait.get_min_value()}")
 
     input("press enter to roll...")
-    output_instance.output(f"your {trait3.get_name()} is in total: "
-                           f"{trait3.get_value()}")
+    output_instance.output(f"your {luck_trait.get_name()} is in total: "
+                           f"{luck_trait.get_value()}")
 
-    return trait1, trait2, trait3
+    # health_trait
+    output_instance.output(f"to set your {health_trait.get_name()}, please"
+                           f" role {health_trait.get_amount()} die and add "
+                           f"{health_trait.get_min_value()}")
+
+    input("press enter to roll...")
+    output_instance.output(f"your {health_trait.get_name()} is in total: "
+                           f"{health_trait.get_value()}")
+
+    return power_trait, luck_trait, health_trait
 
 
 def stats_display(trait1, trait2, trait3):

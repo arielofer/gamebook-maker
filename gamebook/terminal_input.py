@@ -1,6 +1,6 @@
 from gamebook.game_input import Input
-from gamebook.important_strings import exit_user_input_request, input_prompt
-from gamebook.important_strings import user_inputs_request_format
+from gamebook.constants import exit_user_input_request, input_prompt
+from gamebook.constants import user_inputs_request_format
 
 
 class TerminalInput(Input):

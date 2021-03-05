@@ -16,8 +16,8 @@ class Trait(object):
     """
     def __init__(self, name, min_value, amount=0):
         self.name = name
-        self.amount = amount
         self.min_value = min_value
+        self.amount = amount
 
         dice_sum = 0
 
