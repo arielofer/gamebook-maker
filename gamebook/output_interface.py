@@ -1,6 +1,6 @@
 class OutputInterface(object):
     """
-    declares operations common to all supported kinds of output interfaces
+    declares operations common to all supported kinds of output interfaces.
     the Output uses this class to call the fuctions defined in the different
     output interfaces.
     """
