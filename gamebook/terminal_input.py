@@ -5,12 +5,12 @@ from gamebook.constants import user_inputs_request_format
 
 class TerminalInput(Input):
 
-    def input(self, prompt):
+    def input(self, prompt: str) -> str:
         data = input(prompt)
 
         return data
 
-    def ask_for_user_inputs(self, options):
+    def ask_for_user_inputs(self, options: list) -> str:
         user_inputs_string = "\n"
         for option in options:
             user_inputs_string += user_inputs_request_format.format(
