@@ -4,19 +4,27 @@ from gamebook.hero import Hero
 from gamebook.helpers import trait_init
 from gamebook.fight_scene import FightScene
 from gamebook.nextscene import NextScene
+from gamebook.game_input import Input
+from gamebook.terminal_input import TerminalInput
+from gamebook.output import Output
+from gamebook.terminal_output import TerminalOutput
 
 
 class GameManager(object):
-    def __init__(self, scenes_import, output_instance, input_instance):
+    def __init__(self, scenes_import: list, format: str):
         """
             takes care of presenting the scenes to the user and moving
             from one scene to next fluently
 
             scenes_import: a list of all the sceness
+
+            format: the type of IN/OUT format: terminal, web or socket
         """
         self.scenes_import = scenes_import
-        self.output_instance = output_instance
-        self.input_instance = input_instance
+        output_formats = {"terminal": TerminalOutput()}
+        input_formats = {"terminal": TerminalInput()}
+        self.output_instance = Output(output_formats[format])
+        self.input_instance = Input(input_formats[format])
 
         power_trait, luck_trait, health_trait = trait_init()
         self.hero = Hero(traits=[power_trait, luck_trait, health_trait])
