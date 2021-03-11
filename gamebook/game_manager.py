@@ -23,8 +23,8 @@ class GameManager(object):
         self.scenes_import = scenes_import
         output_formats = {"terminal": TerminalOutput()}
         input_formats = {"terminal": TerminalInput()}
-        self.output_instance = Output(output_formats[format])
-        self.input_instance = Input(input_formats[format])
+        self.output_instance = Output(output_formats.get(format, "terminal"))
+        self.input_instance = Input(input_formats.get(format, "terminal"))
 
         power_trait, luck_trait, health_trait = trait_init()
         self.hero = Hero(traits=[power_trait, luck_trait, health_trait])
