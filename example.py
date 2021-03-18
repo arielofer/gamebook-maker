@@ -4,8 +4,6 @@ from gamebook.monster import Monster
 from gamebook.fight_scene import FightScene
 from gamebook.option import Option
 from gamebook.nextscene import NextScene
-from gamebook.terminal_input import TerminalInput
-from gamebook.terminal_output import TerminalOutput
 from gamebook.game_manager import GameManager
 import gamebook.constants
 
@@ -93,10 +91,7 @@ scenes_list = [intro_scene, next_scene1, next_scene2, fight_scene, dead_scene,
 
 
 def main():
-    output_instance = TerminalOutput()
-    input_instance = TerminalInput()
-
-    gm = GameManager(scenes_list, output_instance, input_instance)
+    gm = GameManager(scenes_list, "terminal")
     gm.start(intro_scene)
 
 
