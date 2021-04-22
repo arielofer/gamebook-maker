@@ -9,12 +9,12 @@ class Input(object):
     @property
     def interface(self) -> InputInterface:
         """ reference to the InputInterface object"""
-        return self.interface
+        return self._interface
 
     @interface.setter
-    def interface(self, interface: InputInterface) -> None:
+    def interface(self, new_interface: InputInterface) -> None:
         """replace the interface at runtime"""
-        self.interface = interface
+        self._interface = new_interface
 
     def input(self, prompt: str):
         return self.interface.input(prompt)
