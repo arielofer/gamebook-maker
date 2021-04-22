@@ -1,9 +1,9 @@
-from gamebook.game_input import Input
+from gamebook.input_interface import InputInterface
 from gamebook.constants import exit_user_input_request, input_prompt
 from gamebook.constants import user_inputs_request_format
 
 
-class TerminalInput(Input):
+class TerminalInput(InputInterface):
 
     def input(self, prompt: str) -> str:
         data = input(prompt)

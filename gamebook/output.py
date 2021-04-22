@@ -9,12 +9,12 @@ class Output(object):
     @property
     def interface(self) -> OutputInterface:
         """ reference to the OutputInterface object"""
-        return self.interface
+        return self._interface
 
     @interface.setter
-    def interface(self, interface: OutputInterface) -> None:
+    def interface(self, new_interface: OutputInterface) -> None:
         """replace the interface at runtime"""
-        self.interface = interface
+        self._interface = new_interface
 
     def output(self, content: str):
         self.interface.output(content)
