@@ -22,5 +22,5 @@ class Output(object):
     def clear(self) -> None:
         self.interface.clear()
 
-    def exit(self) -> None:
-        self.interface.exit()
+    def exit(self, exit_reason) -> None:
+        self.interface.exit(exit_reason)

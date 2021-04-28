@@ -82,7 +82,7 @@ intro_scene = Scene(
              Option('Go left', user_inputs=['l', 'left'],
                     next_scenes=NextScene(next_scene1)),
              Option('Go right', user_inputs=['r', 'right'],
-                    next_scenes=next_scene2)
+                    next_scenes="scene2")
             ]
         )
 
