@@ -75,10 +75,10 @@ class GameManager(object):
 
         if isinstance(self.current_scene, FightScene):
             next_scene = self.current_scene.run_fight(self.hero)
-            if not isinstance(next_scene, NextScene):
-                raise gamebook.exceptions.NextSceneTypeError
             if isinstance(next_scene, str):
                 return next_scene
+            if not isinstance(next_scene, NextScene):
+                raise gamebook.exceptions.NextSceneTypeError
             return next_scene.get_scene_name()
 
         if len(self.current_scene.options) == 0:
@@ -88,12 +88,12 @@ class GameManager(object):
         user_input = self.input_instance.\
             ask_for_user_inputs(self.current_scene.options)
 
-        if user_input == gamebook.constants.exit_user_input:
-            # the user wants to quit the game
-            raise gamebook.exceptions.ExitRequested
-
         while True:
             try:
+                if user_input == gamebook.constants.exit_user_input:
+                    # the user wants to quit the game
+                    raise gamebook.exceptions.ExitRequested
+
                 next_scene = self.current_scene.next_scene_draw(user_input)
                 if isinstance(next_scene, str):
                     return next_scene
